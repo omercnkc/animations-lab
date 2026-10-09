@@ -11,6 +11,12 @@
 ## Work Planned (Roadmap Phases)
 - [x] **Phase 1**: Core Architecture & Infrastructure (Next.js, Tailwind, Design System, Registry Schema)
 - [x] **Phase 2**: "Try it Yourself" Engine (Sandpack Web + Expo Snack Mobile)
-- [x] **Phase 3**: Animation Catalog Expansion (Theme toggles, magnetic buttons, shimmer buttons, tilt cards, transitions)
-- [x] **Phase 4**: Showcase UI/UX (Search, filters, copy-paste ready)
+- [x] **Phase 3**: Animation Catalog Expansion:
+  - Theme toggles (`theme-toggle`)
+  - Magnetic buttons (`magnetic-button`)
+  - Shimmer buttons (`shimmer-button`)
+  - 3D Tilt cards (`tilt-card`)
+  - Bottom sheet transitions (`bottom-sheet`)
+  - Smart lock & password validator (`smart-lock-input`)
+- [x] **Phase 4**: Showcase UI/UX (Search, filters, dual light/dark mode, copy-paste ready)
 - [ ] **Phase 5**: Deployment & Polish

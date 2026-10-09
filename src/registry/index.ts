@@ -5,9 +5,12 @@ import { themeToggle } from "./items/toggles/theme-toggle";
 import { tiltCard } from "./items/cards/tilt-card";
 import { bottomSheet } from "./items/transitions/bottom-sheet";
 
+import { smartLockInput } from "./items/inputs/smart-lock-input";
+
 export * from "./schema";
 
 export const allComponents: ComponentItem[] = [
+  smartLockInput,
   magneticButton,
   shimmerButton,
   themeToggle,

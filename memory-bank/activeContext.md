@@ -13,7 +13,13 @@
 - Next.js 16 (App Router) + React 19 + Tailwind CSS v4 running smoothly.
 - Implemented Phase 1, Phase 2, Phase 3, and Phase 4 features.
 - Added full **Light Mode and Dark Mode support** with `ThemeProvider`, animated Sun/Moon toggle button, localStorage persistence, and adaptive styles across all pages and cards.
+- Official flask emblem configured as app favicon, navbar brand icon, and README banner.
+- Added **SmartLockInput** (`smart-lock-input` in `inputs` category):
+  - Web: Interactive animated padlock with realistic shackle pivot rotation, shake on error, dual-mode authentication (Login / Register), and dynamic 4-rule password strength indicator.
+  - Mobile: React Native Reanimated v3 equivalent with spring physics and sequence shakes.
+  - Interactive mini preview added to `ComponentCard` on catalog page.
+  - Verified static generation and Turbopack production build with 100% success.
 
 ## Next Steps
-- Continue adding more advanced animations (e.g. Parallax Cards, Particle Loaders, Animated Inputs).
-- Add Vercel deployment instructions or integration.
+- Continue expanding animation items across loaders, transitions, and gesture components.
+- Prepare deployment configs for Vercel / Cloudflare.

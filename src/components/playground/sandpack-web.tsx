@@ -34,6 +34,21 @@ export function SandpackWeb({ filename, code, dependencies }: SandpackWebProps) 
           },
         }}
         files={{
+          [`/public/index.html`]: {
+            code: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animations Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`,
+            hidden: true,
+          },
           [`/App.tsx`]: {
             code: `import React from 'react';
 import DemoComponent from './${filename.replace(/\.(tsx|ts|js|jsx)$/, '')}';

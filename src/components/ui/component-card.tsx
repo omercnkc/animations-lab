@@ -15,6 +15,8 @@ import {
   Zap,
   ShieldCheck,
   ChevronUp,
+  Lock,
+  Unlock,
 } from 'lucide-react';
 
 export function ComponentCard({ item }: { item: ComponentItem }) {
@@ -25,6 +27,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
         <div className="absolute inset-0 bg-[radial-gradient(#D5D9DC_1px,transparent_1px)] dark:bg-[radial-gradient(#30374C_1px,transparent_1px)] [background-size:16px_16px] opacity-40 dark:opacity-30" />
 
         {/* Dynamic preview based on id */}
+        {item.id === 'smart-lock-input' && <MiniSmartLock />}
         {item.id === 'magnetic-button' && <MiniMagneticButton />}
         {item.id === 'shimmer-button' && <MiniShimmerButton />}
         {item.id === 'theme-toggle' && <MiniThemeToggle />}
@@ -232,3 +235,79 @@ function MiniBottomSheet() {
     </div>
   );
 }
+
+function MiniSmartLock() {
+  const [unlocked, setUnlocked] = useState(false);
+  const [shaking, setShaking] = useState(false);
+
+  const toggleLock = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!unlocked) {
+      setUnlocked(true);
+    } else {
+      setShaking(true);
+      setTimeout(() => {
+        setShaking(false);
+        setUnlocked(false);
+      }, 400);
+    }
+  };
+
+  return (
+    <div
+      onClick={toggleLock}
+      className={`group/lock cursor-pointer flex flex-col items-center justify-center p-3 rounded-2xl transition-all select-none hover:scale-105 active:scale-95 ${
+        shaking ? 'animate-shake' : ''
+      }`}
+    >
+      <div className="relative flex flex-col items-center mb-1.5">
+        {/* Shackle with Pivot Rotation */}
+        <div
+          className="transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] relative z-10"
+          style={{
+            width: '26px',
+            height: '32px',
+            marginBottom: '-10px',
+            transformOrigin: '18% 100%',
+            transform: unlocked ? 'translateY(-12px) rotate(-24deg)' : 'translateY(0)',
+          }}
+        >
+          <div
+            className="w-full h-[28px] border-[4.5px] border-b-0 rounded-t-xl transition-colors duration-300 relative"
+            style={{ borderColor: unlocked ? '#006c49' : '#2196F3' }}
+          >
+            <div className="absolute -right-[4.5px] -bottom-[3px] w-[4.5px] h-[6px] bg-[var(--color-bg-preview)]" />
+          </div>
+          <div
+            className="absolute left-0 bottom-[-6px] w-[4.5px] h-[10px] rounded-b-xs transition-colors duration-300"
+            style={{ backgroundColor: unlocked ? '#006c49' : '#2196F3' }}
+          />
+        </div>
+
+        {/* Lock Body */}
+        <div
+          className="w-14 h-9 rounded-lg flex flex-col items-center justify-center relative z-20 shadow-sm transition-colors duration-300"
+          style={{ backgroundColor: unlocked ? '#006c49' : '#2196F3' }}
+        >
+          <div className="w-2 h-2 rounded-full bg-white relative z-30" />
+          <div className="w-1 h-2.5 bg-white -mt-0.5 rounded-b-xs relative z-30" />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-1 mt-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold border transition-all duration-300 border-[var(--color-border-subtle)] bg-[var(--color-bg-page)] text-[var(--color-text-secondary)] group-hover/lock:border-[var(--color-primary)]">
+        {unlocked ? (
+          <>
+            <Unlock className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
+            <span className="text-emerald-600 dark:text-emerald-400">Unlocked!</span>
+          </>
+        ) : (
+          <>
+            <Lock className="h-3 w-3 text-[var(--color-primary)]" />
+            <span>Tap to Unlock</span>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
