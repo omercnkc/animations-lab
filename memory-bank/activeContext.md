@@ -14,6 +14,10 @@
 - Implemented Phase 1, Phase 2, Phase 3, and Phase 4 features.
 - Added full **Light Mode and Dark Mode support** with `ThemeProvider`, animated Sun/Moon toggle button, localStorage persistence, and adaptive styles across all pages and cards.
 - Official flask emblem configured as app favicon, navbar brand icon, and README banner.
+- Updated Navbar brand logo with **dual Light & Dark mode support**:
+  - Light mode: Uses `brand-light.png` cropped from `icon-light.jpg`.
+  - Dark mode: Uses `brand-dark.png` cropped from `icon-dark.jpg`.
+  - Removed duplicate HTML text (`AnimationLab` / `Web & Mobile Playground`) and enlarged the brand logo for a cleaner, high-end agency aesthetic.
 - Added **SmartLockInput** (`smart-lock-input` in `inputs` category):
   - Web: Interactive animated padlock with realistic shackle pivot rotation, shake on error, dual-mode authentication (Login / Register), and dynamic 4-rule password strength indicator.
   - Mobile: React Native Reanimated v3 equivalent with spring physics and sequence shakes.

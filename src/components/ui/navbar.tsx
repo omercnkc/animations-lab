@@ -11,22 +11,25 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-page)]/90 backdrop-blur-xl transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
-        <Link href="/" className="group flex items-center gap-2.5">
-          <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-md transition-transform duration-300 group-hover:scale-105">
+        <Link
+          href="/"
+          className="group flex items-center transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <div className="relative flex h-11 items-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] shadow-xs transition-all duration-300 group-hover:border-[var(--color-primary)] group-hover:shadow-md">
+            {/* Light Mode Logo */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/icon-flask.png"
-              alt="AnimationLab Icon"
-              className="h-full w-full object-cover"
+              src="/brand-light.png"
+              alt="animationsLab"
+              className="h-full w-auto object-contain dark:hidden"
             />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-base font-bold tracking-tight text-[var(--color-text-main)]">
-              Animation<span className="text-[var(--color-primary)]">Lab</span>
-            </span>
-            <span className="text-[10px] font-medium tracking-wide text-[var(--color-text-muted)]">
-              Web & Mobile Playground
-            </span>
+            {/* Dark Mode Logo */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand-dark.png"
+              alt="animationsLab"
+              className="hidden h-full w-auto object-contain dark:block"
+            />
           </div>
         </Link>
 
