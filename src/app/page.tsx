@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { getAllComponents, getAllCategories } from '@/registry';
-import { ComponentCard } from '@/components/ui/component-card';
+import { CatalogExplorer } from '@/components/ui/catalog-explorer';
 import {
   Sparkles,
   ArrowRight,
@@ -108,38 +108,22 @@ export default function HomePage() {
       {/* Catalog Showcase Section */}
       <section id="catalog" className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-violet-400">
-                Interactive Components
-              </span>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Animation Catalog
-              </h2>
-              <p className="mt-1 text-sm text-neutral-400">
-                Click any component to tweak properties and observe physics in real-time.
-              </p>
-            </div>
-
-            {/* Category pills */}
-            <div className="mt-4 flex flex-wrap gap-2 md:mt-0">
-              {categories.slice(0, 4).map((cat) => (
-                <span
-                  key={cat.id}
-                  className="rounded-full border border-neutral-800 bg-neutral-900/80 px-3 py-1 text-xs font-medium text-neutral-300"
-                >
-                  {cat.name}
-                </span>
-              ))}
-            </div>
+          <div className="mb-8">
+            <span className="text-xs font-semibold uppercase tracking-wider text-violet-400">
+              Interactive Components
+            </span>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Animation Catalog
+            </h2>
+            <p className="mt-1 text-sm text-neutral-400">
+              Click any component to tweak properties, or use the filters and search below.
+            </p>
           </div>
 
-          {/* Component Grid */}
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
-            {components.map((item) => (
-              <ComponentCard key={item.id} item={item} />
-            ))}
-          </div>
+          <CatalogExplorer
+            initialComponents={components}
+            categories={categories}
+          />
         </div>
       </section>
     </div>
