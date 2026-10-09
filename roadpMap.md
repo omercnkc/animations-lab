@@ -67,35 +67,35 @@ graph TD
 - [ ] **Mobil Sandbox (Expo Snack):**
   - React Native bileşenleri için Expo Snack iframe köprüsü.
   - Mobil cihazda anında test etmek için **QR Kod** modalı.
-- [ ] **Sekme Geçişi (Platform Switcher):**
+- [x] **Sekme Geçişi (Platform Switcher):**
   - Tek tıkla `[ 🌐 Web (React) ]` ve `[ 📱 Mobile (React Native) ]` modları arasında geçiş yapabilme.
 
 ---
 
 ### 📍 Faz 3: İlk Animasyon Katalogları (İçerik Üretimi)
-- [ ] **Tema Geçişleri (Theme Toggles):**
+- [x] **Tema Geçişleri (Theme Toggles):**
   - Smooth Morphing Sun/Moon Toggle (SVG morphing geçişi).
-  - Minimalist Switcher (Spring physics tabanlı kaydırma).
-- [ ] **Butonlar (Interactive Buttons):**
+- [x] **Butonlar (Interactive Buttons):**
   - Magnetic Button (İmleci/parmağı çeken manyetik buton).
   - Shimmer / Border Glow Button (Modern neon ışıma efekti).
-- [ ] **Sayfa & Modal Geçişleri (Transitions):**
-  - Shared Element / Scale Transition (Sayfalar arası akıcı büyüme/küçülme).
+- [x] **Kartlar & 3D (Cards):**
+  - 3D Perspective Tilt Card (Açısal eğim ve hologram yansıması).
+- [x] **Sayfa & Modal Geçişleri (Transitions):**
   - Bottom Sheet Slide-Up (Mobilde ve webde pürüzsüz açılan alt panel).
 
 ---
 
 ### 📍 Faz 4: Kullanıcı Deneyimi & Vitrin Özellikleri
-- [ ] **Tek Tık Kopyalama:** Kod bloklarının üzerinde "Copy Code" ve "Copy Install Command" butonları.
-- [ ] **Filtreleme & Arama (Cmd + K):** Kategoriye göre (Butonlar, Girişler, Kartlar, Sayfalar) filtreleme.
-- [ ] **Responsive Tasarım:** Sitenin kendisinin de mobilde ve tablette kusursuz çalışması.
+- [x] **Tek Tık Kopyalama:** Kod bloklarının üzerinde "Copy Code" ve "Copy Install Command" butonları.
+- [x] **Filtreleme & Arama (Cmd + K):** Kategoriye göre (Butonlar, Kartlar, Geçişler) filtreleme ve gerçek zamanlı arama.
+- [x] **Responsive Tasarım:** Sitenin kendisinin de mobilde ve tablette kusursuz çalışması.
 
 ---
 
 ### 📍 Faz 5: Canlıya Alma (Deploy), SEO ve GitHub Entegrasyonu
 - [ ] **Vercel Entegrasyonu:** `animations-lab.vercel.app` üzerinden ücretsiz canlı yayın.
-- [ ] **OpenGraph & SEO:** Twitter/LinkedIn'de paylaşıldığında otomatik animasyon önizleme kartları oluşturma.
-- [ ] **GitHub README Entegrasyonu:** GitHub reposundan doğrudan web sitesindeki canlı deneme alanına yönlendiren badge'ler.
+- [x] **OpenGraph & SEO:** Sayfa başlıkları, meta açıklamaları ve OpenGraph hazırlandı.
+- [x] **GitHub README Entegrasyonu:** GitHub reposundan doğrudan web sitesine yönlendiren badge'ler ve kullanım kılavuzu.
 
 ---
 
