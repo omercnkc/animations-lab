@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="public/animationsLab-icon.jpg" alt="AnimationLab Logo Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
+
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-16.4-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61dafb?logo=react)

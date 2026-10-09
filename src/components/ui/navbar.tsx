@@ -15,8 +15,8 @@ export function Navbar() {
           <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-md transition-transform duration-300 group-hover:scale-105">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/animationsLab-icon.jpg"
-              alt="AnimationLab Logo"
+              src="/icon-flask.png"
+              alt="AnimationLab Icon"
               className="h-full w-full object-cover"
             />
           </div>
