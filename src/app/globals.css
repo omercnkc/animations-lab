@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #09090b;
-  --card: #ffffff;
-  --card-border: #e2e8f0;
-  --accent: #7c3aed;
-  --accent-glow: rgba(124, 58, 237, 0.12);
+  /* 1. Temel Renkler (Color Swatches) */
+  --color-primary: #2196F3;
+  --color-primary-hover: #1976D2;
+  --color-primary-dark: #0D47A1;
+  --color-primary-light: #E3F2FD;
+  --color-primary-border: #BBDEFB;
+
+  /* 2. Nötr ve Zemin Renkleri (Neutrals & Surfaces) */
+  --color-bg-page: #FFFFFF;
+  --color-bg-preview: #FAFAFA;
+  --color-bg-panel: #F1F1F1;
+  --color-border-subtle: #E7E9EB;
+  --color-border-medium: #D5D9DC;
+  --color-dark-banner: #282A35;
+
+  /* 3. Metin & Tipografi Renkleri */
+  --color-text-main: #282A35;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #6B7280;
+
+  /* Legacy compatibility maps */
+  --background: var(--color-bg-page);
+  --foreground: var(--color-text-main);
+  --card: var(--color-bg-page);
+  --card-border: var(--color-border-subtle);
+  --accent: var(--color-primary);
+  --accent-glow: rgba(33, 150, 243, 0.18);
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #f4f4f5;
-  --card: #121215;
-  --card-border: #27272a;
-  --accent: #8b5cf6;
-  --accent-glow: rgba(139, 92, 246, 0.25);
+  /* Dark mode tailored adaptation */
+  --color-primary: #2196F3;
+  --color-primary-hover: #42A5F5;
+  --color-primary-dark: #1976D2;
+  --color-primary-light: rgba(33, 150, 243, 0.14);
+  --color-primary-border: rgba(33, 150, 243, 0.35);
+
+  --color-bg-page: #17181f;
+  --color-bg-preview: #111218;
+  --color-bg-panel: #21232d;
+  --color-border-subtle: #2d303e;
+  --color-border-medium: #3d4253;
+  --color-dark-banner: #0f1015;
+
+  --color-text-main: #f3f4f6;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #9ca3af;
+
+  --background: var(--color-bg-page);
+  --foreground: var(--color-text-main);
+  --card: var(--color-bg-panel);
+  --card-border: var(--color-border-subtle);
+  --accent: var(--color-primary);
+  --accent-glow: rgba(33, 150, 243, 0.28);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-brand: var(--color-primary);
+  --color-brand-hover: var(--color-primary-hover);
+  --color-brand-dark: var(--color-primary-dark);
+  --color-brand-light: var(--color-primary-light);
+  --color-brand-border: var(--color-primary-border);
+
+  --color-surface-page: var(--color-bg-page);
+  --color-surface-preview: var(--color-bg-preview);
+  --color-surface-panel: var(--color-bg-panel);
+  --color-surface-border: var(--color-border-subtle);
+  --color-surface-border-medium: var(--color-border-medium);
+  --color-surface-header: var(--color-dark-banner);
+
+  --color-ink: var(--color-text-main);
+  --color-ink-secondary: var(--color-text-secondary);
+  --color-ink-muted: var(--color-text-muted);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -30,35 +84,57 @@
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-main);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Primary brand button style */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Blue badge box */
+.badge-blue {
+  background-color: var(--color-primary-light);
+  border: 1px solid var(--color-primary-border);
+  color: var(--color-primary-dark);
+}
+
+.dark .badge-blue {
+  color: #64b5f6;
 }
 
 /* Glass panel */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border-subtle);
 }
 
 .dark .glass-panel {
-  background: rgba(18, 18, 22, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(33, 35, 45, 0.85);
+  border: 1px solid var(--color-border-subtle);
 }
 
-/* Animated gradient text */
+/* Animated gradient text with Brand Blue */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #4338ca 0%, #7c3aed 50%, #9333ea 100%);
+  background: linear-gradient(135deg, #0d47a1 0%, #2196f3 50%, #42a5f5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .dark .text-gradient-primary {
-  background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #818cf8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #90caf9 50%, #2196f3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -74,18 +150,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-border-medium);
   border-radius: 9999px;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #27272a;
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: var(--color-primary);
 }

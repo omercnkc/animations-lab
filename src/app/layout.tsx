@@ -31,15 +31,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-slate-50 dark:bg-neutral-950 text-slate-900 dark:text-neutral-100 selection:bg-violet-500/20 selection:text-violet-700 dark:selection:bg-violet-500/30 dark:selection:text-violet-200">
+      <body className="min-h-full flex flex-col bg-[var(--color-bg-page)] text-[var(--color-text-main)] selection:bg-[#2196F3]/20 selection:text-[#0D47A1] dark:selection:bg-[#2196F3]/30 dark:selection:text-[#90caf9]">
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-slate-200 dark:border-neutral-800/80 bg-white/70 dark:bg-neutral-950/80 py-8 text-center text-xs text-slate-500 dark:text-neutral-400 backdrop-blur-md">
+          <footer className="border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] py-8 text-center text-xs text-[#6B7280] backdrop-blur-md transition-colors">
             <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-violet-600 dark:text-violet-400" />
-                <span className="font-semibold text-slate-800 dark:text-white">AnimationLab</span>
+                <Sparkles className="h-4 w-4 text-[#2196F3]" />
+                <span className="font-semibold text-[#282A35] dark:text-white">AnimationLab</span>
                 <span>— Open Source Interactive Showcase</span>
               </div>
               <div className="flex items-center gap-1">
@@ -50,7 +50,7 @@ export default function RootLayout({
                   href="https://github.com/omercnkc/animations-lab"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-600 dark:text-neutral-400 transition-colors hover:text-slate-900 dark:hover:text-white"
+                  className="text-[#6B7280] transition-colors hover:text-[#2196F3]"
                 >
                   GitHub Repository
                 </a>
