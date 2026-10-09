@@ -12,8 +12,13 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <Link href="/" className="group flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-primary)] shadow-md shadow-[var(--color-primary)]/25 transition-transform duration-300 group-hover:scale-105">
-            <Sparkles className="h-5 w-5 text-white" />
+          <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-md transition-transform duration-300 group-hover:scale-105">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/animationsLab-icon.jpg"
+              alt="AnimationLab Logo"
+              className="h-full w-full object-cover"
+            />
           </div>
           <div className="flex flex-col">
             <span className="text-base font-bold tracking-tight text-[var(--color-text-main)]">
