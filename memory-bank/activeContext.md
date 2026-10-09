@@ -9,13 +9,11 @@
 
 ## Recent Changes
 - Initial roadmap documented in `roadpMap.md`.
-- Tech stack evaluated and Next.js confirmed.
-- GitHub repository configured: `https://github.com/omercnkc/animations-lab`.
-- Node.js v20 LTS activated.
-- Next.js 16 (App Router, TypeScript, Tailwind CSS v4) bootstrapped.
-- Installed core packages: `lucide-react`, `framer-motion`, `@codesandbox/sandpack-react`.
+- GitHub repository configured & active: `https://github.com/omercnkc/animations-lab`.
+- Next.js 16 (App Router) + React 19 + Tailwind CSS v4 running smoothly.
+- Implemented Phase 1, Phase 2, Phase 3, and Phase 4 features.
+- Added full **Light Mode and Dark Mode support** with `ThemeProvider`, animated Sun/Moon toggle button, localStorage persistence, and adaptive styles across all pages and cards.
 
 ## Next Steps
-1. Create Component Registry Schema (`src/registry/schema.ts`).
-2. Implement dark theme design system tokens in `src/app/globals.css`.
-3. Build the core layout, navbar, and hero showcase components.
+- Continue adding more advanced animations (e.g. Parallax Cards, Particle Loaders, Animated Inputs).
+- Add Vercel deployment instructions or integration.

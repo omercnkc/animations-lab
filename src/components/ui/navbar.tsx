@@ -4,10 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { Sparkles, Layers, Search, Terminal } from 'lucide-react';
 import { GithubIcon } from './icons';
+import { ThemeToggleButton } from '@/components/theme/theme-toggle-button';
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-800/80 bg-neutral-950/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-neutral-800/80 bg-white/80 dark:bg-neutral-950/70 backdrop-blur-xl transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand */}
         <Link href="/" className="group flex items-center gap-2.5">
@@ -15,10 +16,10 @@ export function Navbar() {
             <Sparkles className="h-5 w-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-base font-bold tracking-tight text-white">
-              Animation<span className="text-violet-400">Lab</span>
+            <span className="text-base font-bold tracking-tight text-slate-900 dark:text-white">
+              Animation<span className="text-violet-600 dark:text-violet-400">Lab</span>
             </span>
-            <span className="text-[10px] font-medium tracking-wide text-neutral-400">
+            <span className="text-[10px] font-medium tracking-wide text-slate-500 dark:text-neutral-400">
               Web & Mobile Playground
             </span>
           </div>
@@ -28,36 +29,30 @@ export function Navbar() {
         <nav className="hidden items-center gap-6 md:flex">
           <Link
             href="/#catalog"
-            className="flex items-center gap-1.5 text-sm font-medium text-neutral-300 transition-colors hover:text-white"
+            className="flex items-center gap-1.5 text-sm font-medium text-slate-600 dark:text-neutral-300 transition-colors hover:text-slate-900 dark:hover:text-white"
           >
-            <Layers className="h-4 w-4 text-neutral-400" />
+            <Layers className="h-4 w-4 text-slate-400 dark:text-neutral-400" />
             Catalog
           </Link>
           <Link
             href="/components/buttons/magnetic-button"
-            className="flex items-center gap-1.5 text-sm font-medium text-neutral-300 transition-colors hover:text-white"
+            className="flex items-center gap-1.5 text-sm font-medium text-slate-600 dark:text-neutral-300 transition-colors hover:text-slate-900 dark:hover:text-white"
           >
-            <Terminal className="h-4 w-4 text-neutral-400" />
+            <Terminal className="h-4 w-4 text-slate-400 dark:text-neutral-400" />
             Interactive Playground
           </Link>
         </nav>
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
-          <div className="relative hidden sm:block">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-neutral-500" />
-            <input
-              type="text"
-              placeholder="Search animations..."
-              className="h-9 w-52 rounded-full border border-neutral-800 bg-neutral-900/90 pl-9 pr-4 text-xs text-neutral-200 placeholder-neutral-500 transition-colors focus:border-violet-500 focus:outline-none"
-            />
-          </div>
+          {/* Light / Dark Mode Switcher */}
+          <ThemeToggleButton />
 
           <a
             href="https://github.com/omercnkc/animations-lab"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/90 px-3.5 text-xs font-medium text-neutral-200 transition-colors hover:border-neutral-700 hover:bg-neutral-800 hover:text-white"
+            className="flex h-9 items-center gap-2 rounded-full border border-slate-200 dark:border-neutral-800 bg-slate-100 dark:bg-neutral-900/90 px-3.5 text-xs font-medium text-slate-700 dark:text-neutral-200 transition-colors hover:border-slate-300 dark:hover:border-neutral-700 hover:text-slate-900 dark:hover:text-white"
           >
             <GithubIcon className="h-4 w-4" />
             <span className="hidden sm:inline">GitHub</span>
