@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Sandpack } from '@codesandbox/sandpack-react';
+import { useTheme } from '@/components/theme/theme-provider';
 
 interface SandpackWebProps {
   filename: string;
@@ -10,11 +11,13 @@ interface SandpackWebProps {
 }
 
 export function SandpackWeb({ filename, code, dependencies }: SandpackWebProps) {
+  const { theme } = useTheme();
+
   return (
-    <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950 shadow-2xl">
+    <div className="overflow-hidden rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-xl transition-colors">
       <Sandpack
         template="react-ts"
-        theme="dark"
+        theme={theme === 'dark' ? 'dark' : 'light'}
         options={{
           showNavigator: false,
           showTabs: true,
@@ -39,8 +42,8 @@ export default function App() {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#0a0a0a',
-      color: '#ffffff',
+      backgroundColor: '${theme === 'dark' ? '#0b0d13' : '#ffffff'}',
+      color: '${theme === 'dark' ? '#f8fafc' : '#1e293b'}',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

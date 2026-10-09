@@ -19,10 +19,10 @@ import {
 
 export function ComponentCard({ item }: { item: ComponentItem }) {
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-white dark:bg-[#21232d]/40 shadow-xs backdrop-blur-sm transition-all duration-300 hover:border-[#2196F3] hover:shadow-xl hover:shadow-[#2196F3]/10">
-      {/* Interactive Card Canvas Preview (Preview Grid Tint: #FAFAFA) */}
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-xs backdrop-blur-sm transition-all duration-300 hover:border-[var(--color-primary)] hover:shadow-xl hover:shadow-[var(--color-primary)]/10">
+      {/* Interactive Card Canvas Preview (Preview Grid Tint: #FAFAFA in light / #11141E in dark) */}
       <div className="relative flex h-52 w-full items-center justify-center overflow-hidden border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-preview)] p-6 transition-colors">
-        <div className="absolute inset-0 bg-[radial-gradient(#D5D9DC_1px,transparent_1px)] dark:bg-[radial-gradient(#3d4253_1px,transparent_1px)] [background-size:16px_16px] opacity-40 dark:opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(#D5D9DC_1px,transparent_1px)] dark:bg-[radial-gradient(#30374C_1px,transparent_1px)] [background-size:16px_16px] opacity-40 dark:opacity-30" />
 
         {/* Dynamic preview based on id */}
         {item.id === 'magnetic-button' && <MiniMagneticButton />}
@@ -33,10 +33,10 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
 
         {/* Platform tags */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
-          <span className="flex items-center gap-1 rounded-md border border-[var(--color-border-subtle)] bg-white/95 dark:bg-[#111218]/90 px-2 py-0.5 text-[10px] font-medium text-[#4B5563] dark:text-neutral-400 shadow-xs">
-            <Globe className="h-3 w-3 text-[#2196F3]" /> Web (React)
+          <span className="flex items-center gap-1 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-page)] px-2 py-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] shadow-xs">
+            <Globe className="h-3 w-3 text-[var(--color-primary)]" /> Web (React)
           </span>
-          <span className="flex items-center gap-1 rounded-md border border-[var(--color-border-subtle)] bg-white/95 dark:bg-[#111218]/90 px-2 py-0.5 text-[10px] font-medium text-[#4B5563] dark:text-neutral-400 shadow-xs">
+          <span className="flex items-center gap-1 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-page)] px-2 py-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] shadow-xs">
             <Smartphone className="h-3 w-3 text-emerald-500" /> Mobile (Reanimated)
           </span>
         </div>
@@ -45,20 +45,20 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
       {/* Info Section */}
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-2 flex items-center justify-between">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[#2196F3]">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--color-primary)]">
             {item.category}
           </span>
           {item.featured && (
-            <span className="rounded-full bg-[#E3F2FD] dark:bg-[#2196F3]/15 px-2 py-0.5 text-[10px] font-semibold text-[#0D47A1] dark:text-[#64b5f6]">
+            <span className="rounded-full bg-[var(--color-primary-light)] border border-[var(--color-primary-border)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-primary-dark)]">
               Featured
             </span>
           )}
         </div>
 
-        <h3 className="text-base font-semibold text-[#282A35] dark:text-white group-hover:text-[#2196F3] transition-colors">
+        <h3 className="text-base font-semibold text-[var(--color-text-main)] group-hover:text-[var(--color-primary)] transition-colors">
           {item.title}
         </h3>
-        <p className="mt-1 flex-1 text-xs leading-relaxed text-[#4B5563] dark:text-[#d1d5db]">
+        <p className="mt-1 flex-1 text-xs leading-relaxed text-[var(--color-text-secondary)]">
           {item.description}
         </p>
 
@@ -67,7 +67,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
           {item.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="rounded bg-[var(--color-bg-panel)] px-1.5 py-0.5 text-[10px] text-[#6B7280] font-medium"
+              className="rounded border border-[var(--color-border-subtle)] bg-[var(--color-bg-page)] px-1.5 py-0.5 text-[10px] text-[var(--color-text-muted)] font-medium"
             >
               #{tag}
             </span>
@@ -78,7 +78,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
         <div className="mt-5 border-t border-[var(--color-border-subtle)] pt-4">
           <Link
             href={`/components/${item.category}/${item.slug}`}
-            className="flex items-center justify-between text-xs font-semibold text-[#282A35] dark:text-neutral-300 transition-colors group-hover:text-[#2196F3]"
+            className="flex items-center justify-between text-xs font-semibold text-[var(--color-text-main)] transition-colors group-hover:text-[var(--color-primary)]"
           >
             <span className="flex items-center gap-1.5">
               <Code className="h-3.5 w-3.5" />
@@ -118,9 +118,9 @@ function MiniMagneticButton() {
       transition={{ type: 'spring', stiffness: 220, damping: 15, mass: 0.1 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="relative z-10 flex items-center gap-2 rounded-full border border-[#BBDEFB] dark:border-[#2196F3]/40 bg-[#E3F2FD] dark:bg-[#21232d] px-5 py-2.5 text-xs font-semibold text-[#0D47A1] dark:text-[#64b5f6] shadow-md backdrop-blur"
+      className="relative z-10 flex items-center gap-2 rounded-full border border-[var(--color-primary-border)] bg-[var(--color-primary-light)] px-5 py-2.5 text-xs font-semibold text-[var(--color-primary-dark)] shadow-md backdrop-blur"
     >
-      <Sparkles className="h-3.5 w-3.5 text-[#2196F3]" />
+      <Sparkles className="h-3.5 w-3.5 text-[var(--color-primary)]" />
       <span>Hover / Pull Me</span>
     </motion.button>
   );
@@ -134,8 +134,8 @@ function MiniShimmerButton() {
       className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full p-[2px]"
     >
       <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#2196F3_0%,#0D47A1_50%,#BBDEFB_100%)]" />
-      <span className="inline-flex items-center gap-2 rounded-full bg-[#282A35] dark:bg-[#111218] px-5 py-2 text-xs font-semibold text-white">
-        <Zap className="h-3.5 w-3.5 text-[#2196F3]" />
+      <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-dark-banner)] px-5 py-2 text-xs font-semibold text-white">
+        <Zap className="h-3.5 w-3.5 text-[var(--color-primary)]" />
         <span>Shimmer Blue</span>
       </span>
     </motion.button>
@@ -148,12 +148,12 @@ function MiniThemeToggle() {
   return (
     <button
       onClick={() => setIsDark(!isDark)}
-      className="relative z-10 flex h-11 w-20 items-center rounded-full border border-[var(--color-border-medium)] bg-white dark:bg-[#21232d] p-1 shadow-md transition-colors hover:border-[#2196F3]"
+      className="relative z-10 flex h-11 w-20 items-center rounded-full border border-[var(--color-border-medium)] bg-[var(--color-bg-page)] p-1 shadow-md transition-colors hover:border-[var(--color-primary)]"
     >
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2196F3] text-white shadow"
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-primary)] text-white shadow"
         style={{ marginLeft: isDark ? 'auto' : '0' }}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -189,15 +189,15 @@ function MiniTiltCard() {
     <motion.div
       whileHover={{ rotateY: 15, rotateX: -10, scale: 1.05 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="flex h-28 w-44 flex-col justify-between rounded-xl border border-[#BBDEFB] dark:border-[#2196F3]/40 bg-white dark:bg-[#21232d] p-3 shadow-md"
+      className="flex h-28 w-44 flex-col justify-between rounded-xl border border-[var(--color-border-medium)] bg-[var(--color-bg-page)] p-3 shadow-md"
     >
       <div className="flex items-center justify-between">
-        <ShieldCheck className="h-4 w-4 text-[#2196F3]" />
-        <span className="text-[9px] font-mono text-[#6B7280]">3D TILT</span>
+        <ShieldCheck className="h-4 w-4 text-[var(--color-primary)]" />
+        <span className="text-[9px] font-mono text-[var(--color-text-muted)]">3D TILT</span>
       </div>
       <div>
-        <span className="text-[10px] font-bold text-[#282A35] dark:text-white">Interactive Card</span>
-        <span className="block text-[8px] text-[#6B7280]">Hover to rotate</span>
+        <span className="text-[10px] font-bold text-[var(--color-text-main)]">Interactive Card</span>
+        <span className="block text-[8px] text-[var(--color-text-muted)]">Hover to rotate</span>
       </div>
     </motion.div>
   );
@@ -212,9 +212,9 @@ function MiniBottomSheet() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setClicked(!clicked)}
-        className="flex items-center gap-1.5 rounded-lg border border-[var(--color-border-medium)] bg-white dark:bg-[#21232d] px-3.5 py-1.5 text-xs font-medium text-[#282A35] dark:text-white shadow-xs"
+        className="flex items-center gap-1.5 rounded-lg border border-[var(--color-border-medium)] bg-[var(--color-bg-page)] px-3.5 py-1.5 text-xs font-medium text-[var(--color-text-main)] shadow-xs hover:border-[var(--color-primary)]"
       >
-        <ChevronUp className="h-3.5 w-3.5 text-[#2196F3]" />
+        <ChevronUp className="h-3.5 w-3.5 text-[var(--color-primary)]" />
         <span>{clicked ? 'Hide Sheet' : 'Slide Sheet'}</span>
       </motion.button>
       <AnimatePresence>
@@ -223,7 +223,7 @@ function MiniBottomSheet() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 15 }}
-            className="mt-2 rounded-lg border border-[#BBDEFB] dark:border-[#2196F3]/40 bg-[#E3F2FD] dark:bg-[#21232d] px-3 py-1.5 text-[10px] text-[#0D47A1] dark:text-[#64b5f6] font-semibold shadow-xl"
+            className="mt-2 rounded-lg border border-[var(--color-primary-border)] bg-[var(--color-primary-light)] px-3 py-1.5 text-[10px] text-[var(--color-primary-dark)] font-semibold shadow-xl"
           >
             ✨ Smooth Spring Reveal!
           </motion.div>
