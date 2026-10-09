@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
+import { Footer } from "@/components/ui/footer";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Sparkles, Heart } from "lucide-react";
+import { LanguageProvider } from "@/i18n/language-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,36 +28,17 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="tr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-[var(--color-bg-page)] text-[var(--color-text-main)] selection:bg-[var(--color-primary)]/20 selection:text-[var(--color-primary)]">
         <ThemeProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <footer className="border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] py-8 text-center text-xs text-[var(--color-text-muted)] backdrop-blur-md transition-colors">
-            <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8">
-              <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-[var(--color-primary)]" />
-                <span className="font-semibold text-[var(--color-text-main)]">AnimationLab</span>
-                <span>— Open Source Interactive Showcase</span>
-              </div>
-              <div className="flex items-center gap-1 text-[var(--color-text-muted)]">
-                Crafted with <Heart className="h-3.5 w-3.5 text-rose-500 fill-rose-500" /> for Web & Mobile developers
-              </div>
-              <div>
-                <a
-                  href="https://github.com/omercnkc/animations-lab"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
-                >
-                  GitHub Repository
-                </a>
-              </div>
-            </div>
-          </footer>
+          <LanguageProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -18,8 +18,11 @@ import {
   Lock,
   Unlock,
 } from 'lucide-react';
+import { useLanguage } from '@/i18n/language-context';
 
 export function ComponentCard({ item }: { item: ComponentItem }) {
+  const { t } = useLanguage();
+
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-xs backdrop-blur-sm transition-all duration-300 hover:border-[var(--color-primary)] hover:shadow-xl hover:shadow-[var(--color-primary)]/10">
       {/* Interactive Card Canvas Preview (Preview Grid Tint: #FAFAFA in light / #11141E in dark) */}
@@ -37,10 +40,10 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
         {/* Platform tags */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
           <span className="flex items-center gap-1 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-page)] px-2 py-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] shadow-xs">
-            <Globe className="h-3 w-3 text-[var(--color-primary)]" /> Web (React)
+            <Globe className="h-3 w-3 text-[var(--color-primary)]" /> {t('catalog.webTag')}
           </span>
           <span className="flex items-center gap-1 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-page)] px-2 py-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] shadow-xs">
-            <Smartphone className="h-3 w-3 text-emerald-500" /> Mobile (Reanimated)
+            <Smartphone className="h-3 w-3 text-emerald-500" /> {t('catalog.mobileTag')}
           </span>
         </div>
       </div>
@@ -49,11 +52,11 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-2 flex items-center justify-between">
           <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--color-primary)]">
-            {item.category}
+            {t(`categories.${item.category}.name`) || item.category}
           </span>
           {item.featured && (
             <span className="rounded-full bg-[var(--color-primary-light)] border border-[var(--color-primary-border)] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-primary-dark)]">
-              Featured
+              {t('catalog.featured')}
             </span>
           )}
         </div>
@@ -85,7 +88,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
           >
             <span className="flex items-center gap-1.5">
               <Code className="h-3.5 w-3.5" />
-              Try in Playground
+              {t('catalog.tryInPlayground')}
             </span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </Link>

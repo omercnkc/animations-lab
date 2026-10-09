@@ -5,8 +5,12 @@ import Link from 'next/link';
 import { Sparkles, Layers, Terminal } from 'lucide-react';
 import { GithubIcon } from './icons';
 import { ThemeToggleButton } from '@/components/theme/theme-toggle-button';
+import { LanguageToggle } from '@/components/ui/language-toggle';
+import { useLanguage } from '@/i18n/language-context';
 
 export function Navbar() {
+  const { t } = useLanguage();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-page)]/90 backdrop-blur-xl transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -40,19 +44,22 @@ export function Navbar() {
             className="flex items-center gap-1.5 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-primary)]"
           >
             <Layers className="h-4 w-4 text-[var(--color-text-muted)]" />
-            Catalog
+            {t('nav.catalog')}
           </Link>
           <Link
             href="/components/buttons/magnetic-button"
             className="flex items-center gap-1.5 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-primary)]"
           >
             <Terminal className="h-4 w-4 text-[var(--color-text-muted)]" />
-            Interactive Playground
+            {t('nav.playground')}
           </Link>
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          {/* Language Switcher (TR / EN) */}
+          <LanguageToggle />
+
           {/* Light / Dark Mode Switcher */}
           <ThemeToggleButton />
 

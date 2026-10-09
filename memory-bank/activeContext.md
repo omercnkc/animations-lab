@@ -23,6 +23,11 @@
   - Mobile: React Native Reanimated v3 equivalent with spring physics and sequence shakes.
   - Interactive mini preview added to `ComponentCard` on catalog page.
   - Verified static generation and Turbopack production build with 100% success.
+- Added **Full Dual-Language Support (Türkçe / English)**:
+  - Created `src/i18n/translations.ts` and `src/i18n/language-context.tsx` with `LanguageProvider` & `useLanguage()`.
+  - Created animated `LanguageToggle` button in Navbar (`TR` / `EN` with smooth sliding spring pill).
+  - Localized Navbar, Hero, Catalog section, search placeholders, category chips, component cards, detail page breadcrumbs, and footer.
+  - Persistent language preference via `localStorage('animations-lab-locale')` with browser locale detection.
 
 ## Next Steps
 - Continue expanding animation items across loaders, transitions, and gesture components.

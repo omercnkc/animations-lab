@@ -26,7 +26,10 @@ const SandpackWeb = dynamic(
   }
 );
 
+import { useLanguage } from '@/i18n/language-context';
+
 export function PlaygroundTabs({ item }: { item: ComponentItem }) {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'web' | 'mobile'>('web');
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedInstall, setCopiedInstall] = useState(false);
@@ -65,7 +68,7 @@ export function PlaygroundTabs({ item }: { item: ComponentItem }) {
             }`}
           >
             <Globe className="h-4 w-4" />
-            <span>Web (React & Framer Motion)</span>
+            <span>{t('playground.webTab')}</span>
           </button>
           <button
             onClick={() => setActiveTab('mobile')}
@@ -76,7 +79,7 @@ export function PlaygroundTabs({ item }: { item: ComponentItem }) {
             }`}
           >
             <Smartphone className="h-4 w-4" />
-            <span>Mobile (React Native Reanimated)</span>
+            <span>{t('playground.mobileTab')}</span>
           </button>
         </div>
 
@@ -87,7 +90,7 @@ export function PlaygroundTabs({ item }: { item: ComponentItem }) {
             className="flex items-center gap-1.5 rounded-lg border border-[var(--color-border-medium)] bg-white dark:bg-[#21232d] px-3.5 py-1.5 text-xs font-medium text-[#282A35] dark:text-neutral-300 shadow-xs transition-colors hover:border-[#BBDEFB] hover:text-[#2196F3]"
           >
             <Terminal className="h-3.5 w-3.5 text-[#2196F3]" />
-            <span>{copiedInstall ? 'Copied CLI Command!' : 'Copy Install Command'}</span>
+            <span>{copiedInstall ? t('playground.copiedInstall') : t('playground.copyInstall')}</span>
           </button>
 
           <button
@@ -97,12 +100,12 @@ export function PlaygroundTabs({ item }: { item: ComponentItem }) {
             {copiedCode ? (
               <>
                 <Check className="h-3.5 w-3.5 text-white" />
-                <span>Copied Code!</span>
+                <span>{t('playground.copiedCode')}</span>
               </>
             ) : (
               <>
                 <Copy className="h-3.5 w-3.5 text-white" />
-                <span>Copy Code</span>
+                <span>{t('playground.copyCode')}</span>
               </>
             )}
           </button>

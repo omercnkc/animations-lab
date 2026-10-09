@@ -18,5 +18,9 @@
   - 3D Tilt cards (`tilt-card`)
   - Bottom sheet transitions (`bottom-sheet`)
   - Smart lock & password validator (`smart-lock-input`)
-- [x] **Phase 4**: Showcase UI/UX (Search, filters, dual light/dark mode, copy-paste ready)
+- [x] **Phase 4**: Showcase UI/UX:
+  - Real-time search & category filters
+  - Dual light/dark mode with obsidian dark palette
+  - **Full Dual-Language Support (Türkçe 🇹🇷 / English 🇬🇧)** with animated navbar toggle and instant localization
+  - Zero-lag copy-paste code snippets & CLI install commands
 - [ ] **Phase 5**: Deployment & Polish
