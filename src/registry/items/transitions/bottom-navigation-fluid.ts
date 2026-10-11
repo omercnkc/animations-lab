@@ -15,7 +15,7 @@ export const bottomNavigationFluid: ComponentItem = {
     },
     code: `'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Home, Package, Plus, Bell, User } from 'lucide-react';
 
 const COLORS = {
@@ -253,34 +253,35 @@ function TabItem({ tab, isActive, onPress }: { tab: any; isActive: boolean; onPr
 }
 
 function ShootingLine({ x1, x2, color }: { x1: number; x2: number; color: string }) {
+  const pathRef = useRef<SVGPathElement>(null);
   const isRight = x2 > x1;
   const lineLength = Math.abs(x2 - x1);
   const circleCircumference = 141.37;
-
-  const [offset, setOffset] = useState(circleCircumference);
-  const [opacity, setOpacity] = useState(1);
 
   const pathData = isRight
     ? \`M \${x1} 52.5 L \${x2} 52.5 A 22.5 22.5 0 1 0 \${x2 - 0.01} 52.5\`
     : \`M \${x1} 52.5 L \${x2} 52.5 A 22.5 22.5 0 1 1 \${x2 + 0.01} 52.5\`;
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setOffset(-lineLength);
-      });
-    });
-
-    const fadeTimer = setTimeout(() => setOpacity(0), 400);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      clearTimeout(fadeTimer);
-    };
-  }, [lineLength]);
+    if (!pathRef.current) return;
+    const anim = pathRef.current.animate(
+      [
+        { strokeDashoffset: \`\${circleCircumference}px\`, opacity: 1 },
+        { strokeDashoffset: \`-\${lineLength}px\`, opacity: 1, offset: 0.72 },
+        { strokeDashoffset: \`-\${lineLength}px\`, opacity: 0, offset: 1 },
+      ],
+      {
+        duration: 450,
+        easing: 'cubic-bezier(0.35, 0.1, 0.25, 1)',
+        fill: 'forwards',
+      }
+    );
+    return () => anim.cancel();
+  }, [x1, x2, lineLength]);
 
   return (
     <path
+      ref={pathRef}
       d={pathData}
       fill="none"
       stroke={color}
@@ -288,9 +289,7 @@ function ShootingLine({ x1, x2, color }: { x1: number; x2: number; color: string
       strokeLinecap="round"
       style={{
         strokeDasharray: \`\${circleCircumference} 9999\`,
-        strokeDashoffset: offset,
-        opacity: opacity,
-        transition: 'stroke-dashoffset 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s 0.4s linear',
+        strokeDashoffset: circleCircumference,
       }}
     />
   );

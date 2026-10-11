@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ComponentItem } from '@/registry/schema';
 import {
@@ -179,7 +179,7 @@ function MiniSmartLock() {
 
 function MiniFluidBottomNav() {
   const [active, setActive] = useState(0);
-  const [line, setLine] = useState<{ id: number; x1: number; x2: number; color: string } | null>(null);
+  const [lines, setLines] = useState<Array<{ id: number; x1: number; x2: number; color: string; lineLength: number; isRight: boolean }>>([]);
 
   const miniTabs = [
     { id: 'h', icon: Home, color: '#4648d4' },
@@ -188,7 +188,7 @@ function MiniFluidBottomNav() {
     { id: 'u', icon: User, color: '#d97706' },
   ];
 
-  const barWidth = 208;
+  const barWidth = 220;
   const tabWidth = barWidth / 4;
 
   const handleTabClick = (e: React.MouseEvent, index: number) => {
@@ -196,25 +196,38 @@ function MiniFluidBottomNav() {
     if (index === active) return;
     const x1 = active * tabWidth + tabWidth / 2;
     const x2 = index * tabWidth + tabWidth / 2;
-    const id = Date.now();
-    setLine({ id, x1, x2, color: miniTabs[index].color });
-    setTimeout(() => setLine(null), 600);
+    const lineLength = Math.abs(x2 - x1);
+    const isRight = x2 > x1;
+    const id = Date.now() + Math.random();
+
+    setLines((prev) => [...prev.slice(-2), { id, x1, x2, color: miniTabs[index].color, lineLength, isRight }]);
     setActive(index);
+
+    setTimeout(() => {
+      setLines((prev) => prev.filter((l) => l.id !== id));
+    }, 550);
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-2 select-none" style={{ width: barWidth, height: '76px' }}>
+    <div className="relative flex flex-col items-center justify-center p-2 select-none" style={{ width: barWidth, height: '72px' }}>
       {/* Background Pill */}
       <div
         className="absolute bottom-1 w-full h-11 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-md"
       />
 
       {/* Shooting Line SVG Overlay */}
-      {line && (
-        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ zIndex: 15 }}>
-          <MiniShootingLine x1={line.x1} x2={line.x2} color={line.color} />
-        </svg>
-      )}
+      <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ zIndex: 15 }}>
+        {lines.map((l) => (
+          <MiniShootingLine
+            key={l.id}
+            x1={l.x1}
+            x2={l.x2}
+            color={l.color}
+            lineLength={l.lineLength}
+            isRight={l.isRight}
+          />
+        ))}
+      </svg>
 
       {/* Tab Buttons */}
       <div className="absolute bottom-1 w-full h-11 flex items-center" style={{ zIndex: 20 }}>
@@ -225,36 +238,60 @@ function MiniFluidBottomNav() {
             <button
               key={tab.id}
               onClick={(e) => handleTabClick(e, idx)}
-              className="flex-1 h-full flex flex-col items-center justify-center relative cursor-pointer outline-none bg-transparent border-none p-0"
+              className="flex-1 h-full flex flex-col items-center justify-center relative cursor-pointer outline-none bg-transparent border-none p-0 select-none"
             >
-              {/* Active Bead */}
+              {/* Glow Bead */}
               <div
-                className="absolute transition-all duration-300 pointer-events-none"
+                className="absolute pointer-events-none"
                 style={{
-                  width: '26px',
-                  height: '26px',
-                  borderRadius: '13px',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '16px',
                   backgroundColor: tab.color,
-                  top: '-7px',
-                  transform: isActive ? 'scale(1)' : 'scale(0)',
-                  opacity: isActive ? 1 : 0,
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.18)',
-                  transition: 'transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1) 0.15s, opacity 0.2s',
+                  top: '-12px',
+                  transform: isActive ? 'scale(1.25)' : 'scale(0)',
+                  opacity: isActive ? 0.22 : 0,
+                  transition: isActive
+                    ? 'transform 0.45s cubic-bezier(0.34, 1.3, 0.64, 1) 0.24s, opacity 0.35s 0.24s'
+                    : 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s, opacity 0.15s 0s',
                 }}
               />
 
+              {/* Solid Bead */}
               <div
-                className="relative flex items-center justify-center transition-all duration-300"
+                className="absolute pointer-events-none shadow-md"
                 style={{
-                  transform: isActive ? 'translateY(-14px)' : 'translateY(0)',
-                  transition: 'transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1)',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '14px',
+                  backgroundColor: tab.color,
+                  top: '-10px',
+                  transform: isActive ? 'scale(1)' : 'scale(0)',
+                  opacity: isActive ? 1 : 0,
+                  transition: isActive
+                    ? 'transform 0.38s cubic-bezier(0.34, 1.35, 0.64, 1) 0.24s, opacity 0.2s 0.24s'
+                    : 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s, opacity 0.15s 0s',
+                }}
+              />
+
+              {/* Icon Container with Spring Lift */}
+              <div
+                className="relative flex items-center justify-center pointer-events-none"
+                style={{
+                  transform: isActive ? 'translateY(-15px) scale(1.05)' : 'translateY(0) scale(1)',
+                  transition: isActive
+                    ? 'transform 0.45s cubic-bezier(0.34, 1.35, 0.64, 1) 0.24s'
+                    : 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s',
                   zIndex: 25,
                 }}
               >
                 <Icon
-                  size={15}
+                  size={16}
                   color={isActive ? '#ffffff' : '#64748b'}
-                  strokeWidth={2.5}
+                  strokeWidth={2.4}
+                  style={{
+                    transition: isActive ? 'color 0.2s ease 0.24s' : 'color 0.2s ease 0s',
+                  }}
                 />
               </div>
             </button>
@@ -265,32 +302,46 @@ function MiniFluidBottomNav() {
   );
 }
 
-function MiniShootingLine({ x1, x2, color }: { x1: number; x2: number; color: string }) {
-  const isRight = x2 > x1;
-  const lineLength = Math.abs(x2 - x1);
-  const circ = 81.68; // 2 * PI * 13
-  const [offset, setOffset] = useState(circ);
-  const [opacity, setOpacity] = useState(1);
+function MiniShootingLine({
+  x1,
+  x2,
+  color,
+  lineLength,
+  isRight,
+}: {
+  x1: number;
+  x2: number;
+  color: string;
+  lineLength: number;
+  isRight: boolean;
+}) {
+  const pathRef = useRef<SVGPathElement>(null);
+  const circ = 87.96; // 2 * PI * 14
 
   const pathData = isRight
-    ? `M ${x1} 36.5 L ${x2} 36.5 A 13 13 0 1 0 ${x2 - 0.01} 36.5`
-    : `M ${x1} 36.5 L ${x2} 36.5 A 13 13 0 1 1 ${x2 + 0.01} 36.5`;
+    ? `M ${x1} 42 L ${x2} 42 A 14 14 0 1 0 ${x2 - 0.01} 42`
+    : `M ${x1} 42 L ${x2} 42 A 14 14 0 1 1 ${x2 + 0.01} 42`;
 
-  React.useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setOffset(-lineLength);
-      });
-    });
-    const timer = setTimeout(() => setOpacity(0), 350);
-    return () => {
-      cancelAnimationFrame(frame);
-      clearTimeout(timer);
-    };
-  }, [lineLength]);
+  useEffect(() => {
+    if (!pathRef.current) return;
+    const anim = pathRef.current.animate(
+      [
+        { strokeDashoffset: `${circ}px`, opacity: 1 },
+        { strokeDashoffset: `-${lineLength}px`, opacity: 1, offset: 0.72 },
+        { strokeDashoffset: `-${lineLength}px`, opacity: 0, offset: 1 },
+      ],
+      {
+        duration: 420,
+        easing: 'cubic-bezier(0.35, 0.1, 0.25, 1)',
+        fill: 'forwards',
+      }
+    );
+    return () => anim.cancel();
+  }, [circ, lineLength]);
 
   return (
     <path
+      ref={pathRef}
       d={pathData}
       fill="none"
       stroke={color}
@@ -298,9 +349,7 @@ function MiniShootingLine({ x1, x2, color }: { x1: number; x2: number; color: st
       strokeLinecap="round"
       style={{
         strokeDasharray: `${circ} 9999`,
-        strokeDashoffset: offset,
-        opacity,
-        transition: 'stroke-dashoffset 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s 0.35s linear',
+        strokeDashoffset: circ,
       }}
     />
   );
