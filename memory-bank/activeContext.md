@@ -39,6 +39,11 @@
   - Interactive mini preview with shooting line added to `ComponentCard` on home showcase page.
   - Fixed animation stutter/freeze optimization issues: replaced `requestAnimationFrame` state thrashing with native Web Animations API, eliminated stale dependency traps, added multi-line key tracking, and synchronized bead burst delay (240ms) with stroke transit.
   - Production build and static pages verified with 100% success.
+- Added **Orbiting Bubble Device Loader** (`orbiting-bubble-loader` in `loaders` category) from `omercnkc/loading-page`:
+  - Web: Orbital ring of device bubbles rotating smoothly with counter-spinning upright icons, periodic center spotlight attraction, glowing primary highlight, and auto-balancing orbital redistribution.
+  - Mobile: React Native Reanimated equivalent with spring physics and continuous loop rotation.
+  - Interactive mini preview with interactive bubble clicking added to `ComponentCard` on home showcase page.
+  - Production build verified with all 11 static pages generated successfully.
 
 ## Next Steps
 - Continue expanding animation items across loaders, transitions, and gesture components.

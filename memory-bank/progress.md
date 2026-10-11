@@ -14,6 +14,7 @@
 - [x] **Phase 3**: Animation Catalog Expansion:
   - Smart lock & password validator (`smart-lock-input`)
   - Fluid shooting-line bottom navigation (`bottom-navigation-fluid`)
+  - Orbiting bubble device loader (`orbiting-bubble-loader`)
 - [x] **Phase 4**: Showcase UI/UX:
   - Real-time search & category filters
   - Dual light/dark mode with obsidian dark palette

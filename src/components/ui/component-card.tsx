@@ -14,6 +14,10 @@ import {
   Package,
   Bell,
   User,
+  Tv,
+  Laptop,
+  Speaker,
+  Camera,
 } from 'lucide-react';
 import { useLanguage } from '@/i18n/language-context';
 
@@ -29,6 +33,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
         {/* Dynamic preview based on id */}
         {item.id === 'smart-lock-input' && <MiniSmartLock />}
         {item.id === 'bottom-navigation-fluid' && <MiniFluidBottomNav />}
+        {item.id === 'orbiting-bubble-loader' && <MiniOrbitingLoader />}
 
         {/* Platform tags */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
@@ -352,6 +357,119 @@ function MiniShootingLine({
         strokeDashoffset: circ,
       }}
     />
+  );
+}
+
+function MiniOrbitingLoader() {
+  const [centerIdx, setCenterIdx] = useState(0);
+
+  const miniIcons = [
+    { id: 'mobile', icon: Smartphone },
+    { id: 'tv', icon: Tv },
+    { id: 'laptop', icon: Laptop },
+    { id: 'speaker', icon: Speaker },
+    { id: 'camera', icon: Camera },
+  ];
+
+  const numItems = miniIcons.length;
+  const orbitRadius = 46;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCenterIdx((prev) => (prev + 1) % numItems);
+    }, 1800);
+    return () => clearInterval(timer);
+  }, [numItems]);
+
+  const orbitingItems = miniIcons.filter((_, idx) => idx !== centerIdx);
+  const numOrbiting = orbitingItems.length;
+
+  return (
+    <div className="relative flex flex-col items-center justify-center p-2 select-none" style={{ width: '140px', height: '140px' }}>
+      <style>{`
+        @keyframes miniSpinOrbit {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes miniCounterSpin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(-360deg); }
+        }
+      `}</style>
+
+      {/* Orbit Ring Track */}
+      <div
+        className="absolute rounded-full border border-dashed border-[var(--color-border-subtle)] pointer-events-none opacity-60"
+        style={{
+          width: `${orbitRadius * 2}px`,
+          height: `${orbitRadius * 2}px`,
+        }}
+      />
+
+      {/* Rotating Orbit Container */}
+      <div
+        className="relative flex items-center justify-center"
+        style={{
+          width: `${orbitRadius * 2}px`,
+          height: `${orbitRadius * 2}px`,
+          animation: 'miniSpinOrbit 22s linear infinite',
+        }}
+      >
+        {miniIcons.map((item, idx) => {
+          const Icon = item.icon;
+          const isCenter = idx === centerIdx;
+
+          let x = 0;
+          let y = 0;
+
+          if (!isCenter) {
+            const orbitPos = orbitingItems.findIndex((it) => it.id === item.id);
+            const angle = (orbitPos / numOrbiting) * (2 * Math.PI);
+            x = Math.cos(angle) * orbitRadius;
+            y = Math.sin(angle) * orbitRadius;
+          }
+
+          return (
+            <div
+              key={item.id}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCenterIdx(idx);
+              }}
+              className="absolute cursor-pointer"
+              style={{
+                top: '50%',
+                left: '50%',
+                width: '32px',
+                height: '32px',
+                marginTop: '-16px',
+                marginLeft: '-16px',
+                transform: `translate(${x}px, ${y}px)`,
+                transition: 'transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                zIndex: isCenter ? 25 : 5,
+              }}
+            >
+              <div
+                className="w-full h-full rounded-full flex items-center justify-center shadow-xs"
+                style={{
+                  animation: 'miniCounterSpin 22s linear infinite',
+                  transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  backgroundColor: isCenter ? 'var(--color-primary)' : 'var(--color-bg-page)',
+                  color: isCenter ? '#ffffff' : 'var(--color-text-secondary)',
+                  border: isCenter ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border-subtle)',
+                  transform: isCenter ? 'scale(1.3)' : 'scale(1)',
+                  boxShadow: isCenter
+                    ? '0 0 16px rgba(70, 72, 212, 0.5), 0 4px 10px rgba(0, 0, 0, 0.12)'
+                    : '0 2px 6px rgba(0, 0, 0, 0.05)',
+                }}
+              >
+                <Icon size={isCenter ? 16 : 13} strokeWidth={2.4} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

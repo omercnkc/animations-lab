@@ -41,6 +41,7 @@ Experience, live-tweak, and copy-paste buttery-smooth micro-interactions.
 | :--- | :--- | :--- | :--- | :--- |
 | **Smart Lock & Password Validator** | Inputs | Framer Motion + Pivot Physics | Reanimated v3 Springs | Animated Padlock & Security Rules |
 | **Fluid Shooting-Line Bottom Navigation** | Transitions | SVG Dash Offset + Spring Physics | Reanimated Springs | Shooting Stroke & Bursting Beads |
+| **Orbiting Bubble Device Loader** | Loaders | Dynamic Orbit Math + Spring Shift | Reanimated Springs + Rotations | Center Attraction & Re-balancing Orbit |
 
 ---
 
