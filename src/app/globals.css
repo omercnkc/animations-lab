@@ -200,3 +200,21 @@ body {
   50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 6px #ffffff; }
 }
 
+/* Vintage Bulb Pull-Chain Keyframes */
+@keyframes chainSway {
+  0% { transform: translateY(0) rotate(0deg); }
+  14% { transform: translateY(-2px) rotate(22deg); }
+  32% { transform: translateY(0) rotate(-16deg); }
+  48% { transform: translateY(0) rotate(11deg); }
+  64% { transform: translateY(0) rotate(-7deg); }
+  78% { transform: translateY(0) rotate(4deg); }
+  90% { transform: translateY(0) rotate(-1.5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes gentleSway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(4deg); }
+}
+
+

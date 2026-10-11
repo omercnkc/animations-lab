@@ -4,6 +4,7 @@ import { bottomNavigationFluid } from "./items/transitions/bottom-navigation-flu
 import { orbitingBubbleLoader } from "./items/loaders/orbiting-bubble-loader";
 import { animatedAuthPanel } from "./items/cards/animated-auth-panel";
 import { dayNightThemeToggle } from "./items/toggles/day-night-theme-toggle";
+import { edisonBulbPullChain } from "./items/toggles/edison-bulb-pull-chain";
 
 export * from "./schema";
 
@@ -13,6 +14,7 @@ export const allComponents: ComponentItem[] = [
   orbitingBubbleLoader,
   animatedAuthPanel,
   dayNightThemeToggle,
+  edisonBulbPullChain,
 ];
 
 export function getAllComponents(): ComponentItem[] {

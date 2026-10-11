@@ -42,6 +42,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
         {item.id === 'orbiting-bubble-loader' && <MiniOrbitingLoader />}
         {item.id === 'animated-auth-panel' && <MiniAuthPanel />}
         {item.id === 'day-night-theme-toggle' && <MiniDayNightToggle />}
+        {item.id === 'edison-bulb-pull-chain' && <MiniEdisonBulbToggle />}
 
         {/* Platform tags */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
@@ -761,5 +762,195 @@ function MiniDayNightToggle() {
     </div>
   );
 }
+
+function MiniEdisonBulbToggle() {
+  const [isLit, setIsLit] = useState(false);
+  const [isPulling, setIsPulling] = useState(false);
+  const [isSwinging, setIsSwinging] = useState(false);
+
+  const handleToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPulling(true);
+    setIsSwinging(false);
+
+    // Çekme hissi için hafif gecikme
+    setTimeout(() => {
+      setIsLit((prev) => !prev);
+      setIsPulling(false);
+      setIsSwinging(true);
+    }, 140);
+
+    // Salınım durulduğunda state sıfırla
+    setTimeout(() => {
+      setIsSwinging(false);
+    }, 1900);
+  };
+
+  return (
+    <div
+      onClick={handleToggle}
+      className="group/bulb absolute inset-0 flex flex-col items-center justify-center cursor-pointer select-none transition-colors duration-700"
+      style={{
+        backgroundColor: isLit ? '#121216' : '#f4f4f9',
+      }}
+    >
+      {/* Ambient Radial Warm Room Glow (Işık açıkken odayı aydınlatan sıcak amber ışığı) */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-700"
+        style={{
+          background: isLit
+            ? 'radial-gradient(circle at 50% 46%, rgba(255, 120, 0, 0.35) 0%, rgba(255, 60, 0, 0.12) 42%, transparent 74%)'
+            : 'none',
+          opacity: isLit ? 1 : 0,
+        }}
+      />
+
+      {/* Fixture Assembly */}
+      <div className="relative flex flex-col items-center -mt-4">
+        {/* Top Braided Black Fabric Cable */}
+        <div
+          className="w-1.5 h-7 shadow-xs"
+          style={{
+            background: 'repeating-linear-gradient(45deg, #1a1a1a, #1a1a1a 2px, #2a2a2a 2px, #2a2a2a 3px)',
+            boxShadow: 'inset -1px 0 2px rgba(0,0,0,0.5)',
+          }}
+        />
+
+        {/* Vintage Brass Socket Top Base */}
+        <div
+          className="w-8 h-2.5 rounded-t-sm shadow-xs"
+          style={{
+            background: 'linear-gradient(to right, #5c4013, #e0b976, #5c4013)',
+          }}
+        />
+
+        {/* Ribbed Brass Socket Body */}
+        <div
+          className="w-9 h-6 relative shadow-sm"
+          style={{
+            background: 'repeating-linear-gradient(to bottom, #5c4013 0px, #e0b976 2px, #5c4013 4px)',
+            boxShadow: 'inset 4px 0 6px rgba(0,0,0,0.3), inset -3px 0 4px rgba(255,255,255,0.2)',
+          }}
+        />
+
+        {/* Brass Socket Rim */}
+        <div
+          className="w-10 h-2 rounded-b-sm shadow-sm"
+          style={{
+            background: 'linear-gradient(to right, #5c4013, #e0b976, #5c4013)',
+          }}
+        />
+
+        {/* Teardrop Glass Bulb (ST64) */}
+        <div className="relative -mt-1 flex items-center justify-center">
+          <div
+            className="relative w-16 h-24 transition-all duration-500 overflow-hidden flex items-center justify-center"
+            style={{
+              borderRadius: '40% 40% 50% 50% / 30% 30% 65% 65%',
+              background: isLit
+                ? 'radial-gradient(circle at 35% 35%, rgba(255,255,255,0.45) 0%, rgba(255, 160, 50, 0.28) 60%, rgba(150, 80, 20, 0.4) 100%)'
+                : 'radial-gradient(circle at 35% 35%, rgba(255,255,255,0.4) 0%, rgba(255, 230, 200, 0.35) 60%, rgba(150, 80, 20, 0.15) 100%)',
+              border: isLit ? '1px solid rgba(255, 180, 50, 0.85)' : '1px solid rgba(255, 200, 100, 0.35)',
+              boxShadow: isLit
+                ? '0 0 45px 16px rgba(255, 120, 0, 0.75), 0 0 20px 6px rgba(255, 160, 0, 0.6), inset 0 0 14px rgba(255, 200, 50, 0.3)'
+                : 'inset -3px -3px 8px rgba(0,0,0,0.06), inset 4px 4px 10px rgba(255,255,255,0.3)',
+            }}
+          >
+            {/* Filament Structure */}
+            <div className="relative w-7 h-14 flex items-center justify-center">
+              {/* Cage Filaments */}
+              {[1, 0.55].map((scale, i) => (
+                <div
+                  key={i}
+                  className="absolute top-1 inset-x-0 h-11 transition-all duration-300"
+                  style={{
+                    border: isLit ? '1.5px solid #ff5e00' : '1px solid rgba(0,0,0,0.35)',
+                    borderBottom: 'none',
+                    borderRadius: '14px 14px 0 0',
+                    transform: `scaleX(${scale})`,
+                    boxShadow: isLit
+                      ? '0 0 6px #ff4500, inset 0 0 6px #ff4500, 0 0 10px #ff8c00'
+                      : 'none',
+                    filter: isLit ? 'drop-shadow(0 0 2px #fff)' : 'none',
+                  }}
+                />
+              ))}
+
+              {/* Glass Stem */}
+              <div
+                className="absolute bottom-0 w-1.5 h-6 rounded-xs"
+                style={{
+                  background: 'linear-gradient(to right, rgba(0,0,0,0.1), rgba(255,255,255,0.3), rgba(0,0,0,0.1))',
+                  border: '0.5px solid rgba(255,255,255,0.2)',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Suspended Beaded Pull Chain & Mount (Fiziksel Salınım) */}
+        <div
+          className="absolute -right-8 top-2 flex flex-col items-center pointer-events-auto"
+          style={{
+            transformOrigin: 'top center',
+            willChange: 'transform',
+            transform: isPulling ? 'translateY(16px)' : undefined,
+            transition: isPulling ? 'transform 140ms cubic-bezier(0.2, 0.8, 0.4, 1)' : undefined,
+            animation: isSwinging
+              ? 'chainSway 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards'
+              : !isPulling
+              ? 'gentleSway 3.2s ease-in-out infinite'
+              : undefined,
+          }}
+        >
+          {/* Ceiling Brass Mount */}
+          <div
+            className="w-3.5 h-2 rounded-b-sm shadow-xs"
+            style={{
+              background: 'linear-gradient(to bottom, #5c4013, #e0b976, #5c4013)',
+            }}
+          />
+
+          {/* Brass Chain Beads */}
+          <div className="flex flex-col items-center gap-[2.5px] mt-[1px]">
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={i}
+                className="w-1.5 h-1.5 rounded-full shadow-xs"
+                style={{
+                  background: 'radial-gradient(circle at 30% 30%, #e0b976 0%, #b38842 60%, #3a2709 100%)',
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Porcelain / Brass Pull Tassel Handle */}
+          <div
+            className="w-2.5 h-5 rounded-xs mt-[1px] border border-[#2d2d2d] shadow-sm transition-transform group-hover/bulb:scale-105"
+            style={{
+              background: 'linear-gradient(to right, #f5f5f5, #e0e0e0, #9e9e9e)',
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Aesthetic Status Badge */}
+      <div className="mt-3.5 flex items-center gap-1.5 z-10 transition-colors duration-500">
+        <span
+          className="text-[10px] font-semibold tracking-wide px-2.5 py-0.5 rounded-full border transition-all duration-500"
+          style={{
+            color: isLit ? '#ff8c00' : '#475569',
+            backgroundColor: isLit ? 'rgba(255, 140, 0, 0.12)' : 'rgba(0, 0, 0, 0.04)',
+            borderColor: isLit ? 'rgba(255, 140, 0, 0.35)' : 'rgba(0, 0, 0, 0.08)',
+            boxShadow: isLit ? '0 0 10px rgba(255, 140, 0, 0.25)' : 'none',
+          }}
+        >
+          {isLit ? 'Karanlık Mod (Kor Filaman)' : 'Aydınlık Mod (Nostaljik)'}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 
 

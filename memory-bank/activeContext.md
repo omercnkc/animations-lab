@@ -54,6 +54,11 @@
   - Mobile: React Native Reanimated v3 equivalent with interpolated background colors, indicator slide, star opacities, and cloud offset.
   - Interactive mini toggle preview added to `ComponentCard` on home showcase page allowing direct click testing.
   - Hardware-accelerated CSS keyframes (`rotateSun`, `twinkle`) added to `src/app/globals.css`.
+- Added **Vintage Bulb Pull-Chain Switch** (`edison-bulb-pull-chain` in `toggles` category):
+  - Description: Transforms transitions between Dark and Light themes into a nostalgic and aesthetic tactile experience with an interactive swinging beaded chain, antique brass socket, and glowing warm filament.
+  - Web: ST64 teardrop glass bulb with ribbed antique brass socket, braided fabric cable, 3D curved cage filament wires with glowing ember drop-shadows, ambient room glow, and HTML5 Canvas Verlet integration beaded pull-chain physics with momentum.
+  - Mobile: React Native Reanimated v3 + PanResponder with spring recoil pull chain, filament ignition, and theme toggle.
+  - Optimized mini card preview: added hardware-accelerated pendulum chain sway (`chainSway` and idle `gentleSway`), full-canvas smooth dark/light studio background transition (`#f4f4f9` <-> `#121216`), and luminous warm amber radial room glow.
 
 ## Next Steps
 - Continue expanding animation items across toggles, loaders, transitions, and gesture components.

@@ -17,6 +17,7 @@
   - Orbiting bubble device loader (`orbiting-bubble-loader`)
   - Animated split auth card (`animated-auth-panel`)
   - Day & night sky theme toggle (`day-night-theme-toggle`)
+  - Vintage bulb pull-chain switch (`edison-bulb-pull-chain`)
 - [x] **Phase 4**: Showcase UI/UX:
   - Real-time search & category filters
   - Dual light/dark mode with obsidian dark palette

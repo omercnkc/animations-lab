@@ -77,6 +77,7 @@ graph TD
   - Smart Lock & Password Validator (Framer Motion + Reanimated v3).
 - [x] **Tema Geçişleri (Theme Toggles):**
   - Day & Night Sky Theme Toggle (Dönen güneş ışınları, ay kraterleri, batan bulutlar ve parıldayan yıldızlar).
+  - Vintage Bulb Pull-Chain Switch (Eskitilmiş pirinç duy, Verlet fizik boncuklu sallanan zincir ve kor filaman ile estetik dark/light geçişi).
 - [ ] **Butonlar (Interactive Buttons):**
   - Özgün interaktif buton paketleri hazırlanacak.
 - [ ] **Kartlar & 3D (Cards):**
