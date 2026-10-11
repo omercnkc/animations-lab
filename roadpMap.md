@@ -75,8 +75,8 @@ graph TD
 ### 📍 Faz 3: İlk Animasyon Katalogları (İçerik Üretimi)
 - [x] **Dinamik Girdi & Formlar (Inputs):**
   - Smart Lock & Password Validator (Framer Motion + Reanimated v3).
-- [ ] **Tema Geçişleri (Theme Toggles):**
-  - Özgün geçiş bileşenleri eklenecek.
+- [x] **Tema Geçişleri (Theme Toggles):**
+  - Day & Night Sky Theme Toggle (Dönen güneş ışınları, ay kraterleri, batan bulutlar ve parıldayan yıldızlar).
 - [ ] **Butonlar (Interactive Buttons):**
   - Özgün interaktif buton paketleri hazırlanacak.
 - [ ] **Kartlar & 3D (Cards):**

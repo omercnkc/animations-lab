@@ -41,6 +41,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
         {item.id === 'bottom-navigation-fluid' && <MiniFluidBottomNav />}
         {item.id === 'orbiting-bubble-loader' && <MiniOrbitingLoader />}
         {item.id === 'animated-auth-panel' && <MiniAuthPanel />}
+        {item.id === 'day-night-theme-toggle' && <MiniDayNightToggle />}
 
         {/* Platform tags */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
@@ -626,6 +627,136 @@ function MiniAuthPanel() {
             </>
           )}
         </button>
+      </div>
+    </div>
+  );
+}
+
+function MiniDayNightToggle() {
+  const [isDark, setIsDark] = useState(false);
+
+  return (
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsDark(!isDark);
+      }}
+      className="group/toggle cursor-pointer flex flex-col items-center justify-center p-3 select-none"
+    >
+      {/* Sky Pill Container */}
+      <div
+        className="relative w-[140px] h-[60px] rounded-full border-2 transition-all duration-700 shadow-md overflow-hidden"
+        style={{
+          backgroundColor: isDark ? '#1e3a8a' : '#87CEEB',
+          borderColor: isDark ? '#3b82f6' : '#60a5fa',
+          boxShadow: 'inset 0 6px 20px rgba(0, 0, 0, 0.15), inset 0 -3px 5px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        {/* Night Stars */}
+        {[
+          { top: 12, left: 28, size: 3, delay: '0s', dur: '2s' },
+          { top: 25, left: 14, size: 2, delay: '0.4s', dur: '2.4s' },
+          { top: 20, left: 48, size: 3.5, delay: '0.8s', dur: '2.8s' },
+          { top: 36, left: 36, size: 2, delay: '1.2s', dur: '2.2s' },
+          { top: 10, left: 66, size: 3, delay: '0.6s', dur: '2.5s' },
+        ].map((star, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-white pointer-events-none transition-all duration-700"
+            style={{
+              top: `${star.top}px`,
+              left: `${star.left}px`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: isDark ? 0.9 : 0,
+              transform: isDark ? 'translateY(0)' : 'translateY(-30px)',
+              animation: isDark ? `twinkle ${star.dur} infinite ease-in-out ${star.delay}` : 'none',
+            }}
+          />
+        ))}
+
+        {/* Daytime Cloud 1 */}
+        <div
+          className="absolute bg-white rounded-full pointer-events-none transition-all duration-700"
+          style={{
+            top: '30px',
+            left: '55px',
+            width: '40px',
+            height: '15px',
+            opacity: isDark ? 0 : 0.9,
+            transform: isDark ? 'translateY(50px)' : 'translateY(0)',
+            zIndex: 5,
+          }}
+        >
+          <div className="absolute -top-2.5 left-1.5 w-5 h-5 rounded-full bg-white" />
+          <div className="absolute -top-1 left-5 w-4 h-4 rounded-full bg-white" />
+        </div>
+
+        {/* Daytime Cloud 2 */}
+        <div
+          className="absolute bg-white rounded-full pointer-events-none transition-all duration-700"
+          style={{
+            top: '15px',
+            left: '80px',
+            width: '25px',
+            height: '10px',
+            opacity: isDark ? 0 : 0.75,
+            transform: isDark ? 'translateY(50px)' : 'translateY(0)',
+            zIndex: 5,
+          }}
+        >
+          <div className="absolute -top-1.5 left-1 w-3 h-3 rounded-full bg-white" />
+          <div className="absolute -top-1 left-3.5 w-2.5 h-2.5 rounded-full bg-white" />
+        </div>
+
+        {/* Indicator (Sun / Moon) */}
+        <div
+          className="absolute top-1.5 left-1.5 w-[44px] h-[44px] rounded-full flex items-center justify-center overflow-hidden transition-all duration-700"
+          style={{
+            transform: isDark ? 'translateX(76px)' : 'translateX(0)',
+            backgroundColor: isDark ? '#f3f4f6' : '#fbbf24',
+            boxShadow: isDark
+              ? '0 4px 10px rgba(243, 244, 246, 0.5), inset 0 -3px 6px rgba(0, 0, 0, 0.2)'
+              : '0 4px 10px rgba(251, 191, 36, 0.55), inset 0 -3px 5px rgba(0, 0, 0, 0.1)',
+            zIndex: 10,
+          }}
+        >
+          {/* Sun Rays */}
+          <div
+            className="absolute w-full h-full flex items-center justify-center transition-opacity duration-500"
+            style={{
+              opacity: isDark ? 0 : 1,
+              animation: !isDark ? 'rotateSun 14s linear infinite' : 'none',
+            }}
+          >
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+              <div
+                key={angle}
+                className="absolute w-1 h-2 rounded-sm bg-[#fbbf24]"
+                style={{
+                  transform: `rotate(${angle}deg) translateY(-23px)`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Moon Craters (SVG) */}
+          <svg
+            viewBox="0 0 46 46"
+            className="absolute w-full h-full text-[#d1d5db] transition-opacity duration-500"
+            style={{ opacity: isDark ? 1 : 0 }}
+          >
+            <circle cx="14" cy="18" r="4" fill="currentColor" opacity="0.32" />
+            <circle cx="28" cy="12" r="3" fill="currentColor" opacity="0.22" />
+            <circle cx="24" cy="30" r="5" fill="currentColor" opacity="0.32" />
+            <circle cx="10" cy="32" r="2.5" fill="currentColor" opacity="0.22" />
+            <circle cx="35" cy="24" r="2" fill="currentColor" opacity="0.22" />
+          </svg>
+        </div>
+      </div>
+
+      <div className="mt-2 text-[10px] font-semibold text-[var(--color-text-secondary)] transition-colors">
+        {isDark ? 'Gece Modu' : 'Gündüz Modu'}
       </div>
     </div>
   );

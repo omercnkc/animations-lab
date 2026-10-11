@@ -49,9 +49,13 @@
   - Web: Split-screen card with Meet.ai brand panel, glowing pulsing floating orbs, concentric decorative rings, SVG grid overlay, and smooth morphing Login/Register form switcher with input stagger.
   - Mobile: React Native Reanimated equivalent with floating banner orbs and spring-animated tab toggle.
   - Interactive mini split preview added to `ComponentCard` on home showcase page.
-  - Production build verified with all 13 static pages generated successfully.
+  - Added **Day & Night Sky Theme Toggle** (`day-night-theme-toggle` in `toggles` category):
+  - Web: Interactive sky pill switch with rotating sun rays (15s linear spin), realistic SVG moon craters, sinking daytime clouds (sinking by 50-60px), and twinkling nighttime stars with staggered delays.
+  - Mobile: React Native Reanimated v3 equivalent with interpolated background colors, indicator slide, star opacities, and cloud offset.
+  - Interactive mini toggle preview added to `ComponentCard` on home showcase page allowing direct click testing.
+  - Hardware-accelerated CSS keyframes (`rotateSun`, `twinkle`) added to `src/app/globals.css`.
 
 ## Next Steps
-- Continue expanding animation items across loaders, transitions, and gesture components.
+- Continue expanding animation items across toggles, loaders, transitions, and gesture components.
 - Prepare deployment configs for Vercel / Cloudflare.
 

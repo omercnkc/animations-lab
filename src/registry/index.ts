@@ -3,6 +3,7 @@ import { smartLockInput } from "./items/inputs/smart-lock-input";
 import { bottomNavigationFluid } from "./items/transitions/bottom-navigation-fluid";
 import { orbitingBubbleLoader } from "./items/loaders/orbiting-bubble-loader";
 import { animatedAuthPanel } from "./items/cards/animated-auth-panel";
+import { dayNightThemeToggle } from "./items/toggles/day-night-theme-toggle";
 
 export * from "./schema";
 
@@ -11,6 +12,7 @@ export const allComponents: ComponentItem[] = [
   bottomNavigationFluid,
   orbitingBubbleLoader,
   animatedAuthPanel,
+  dayNightThemeToggle,
 ];
 
 export function getAllComponents(): ComponentItem[] {

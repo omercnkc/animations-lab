@@ -43,6 +43,7 @@ Experience, live-tweak, and copy-paste buttery-smooth micro-interactions.
 | **Fluid Shooting-Line Bottom Navigation** | Transitions | SVG Dash Offset + Spring Physics | Reanimated Springs | Shooting Stroke & Bursting Beads |
 | **Orbiting Bubble Device Loader** | Loaders | Dynamic Orbit Math + Spring Shift | Reanimated Springs + Rotations | Center Attraction & Re-balancing Orbit |
 | **Animated Split Auth Card** | Cards | Framer Motion + Glow Orbs | Reanimated Springs + Form Morph | Split Banner, Floating Orbs & Auth Switch |
+| **Day & Night Sky Theme Toggle** | Toggles | CSS Transforms + SVG Moon Craters | Reanimated Springs + Interpolation | Spinning Sun Rays, Moon Craters, Clouds & Stars |
 
 ---
 
