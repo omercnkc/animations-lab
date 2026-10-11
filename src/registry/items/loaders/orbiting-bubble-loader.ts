@@ -117,6 +117,7 @@ export default function OrbitingBubbleLoaderDemo() {
                 transform: \`translate(\${x}px, \${y}px)\`,
                 transition: 'transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1)',
                 zIndex: isCenter ? 25 : 5,
+                willChange: 'transform',
               }}
             >
               <div
@@ -136,6 +137,7 @@ export default function OrbitingBubbleLoaderDemo() {
                   boxShadow: isCenter
                     ? '0 0 28px rgba(70, 72, 212, 0.55), 0 8px 18px rgba(70, 72, 212, 0.3)'
                     : '0 6px 14px rgba(18, 28, 42, 0.08)',
+                  willChange: 'transform',
                 }}
               >
                 <Icon size={isCenter ? 26 : 22} strokeWidth={2.2} />

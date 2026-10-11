@@ -43,6 +43,7 @@
   - Web: Orbital ring of device bubbles rotating smoothly with counter-spinning upright icons, periodic center spotlight attraction, glowing primary highlight, and auto-balancing orbital redistribution.
   - Mobile: React Native Reanimated equivalent with spring physics and continuous loop rotation.
   - Interactive mini preview with interactive bubble clicking added to `ComponentCard` on home showcase page.
+  - Optimized mini card preview: increased orbit radius from 46px to 64px, added all 7 device icons, removed distorted dashed ring, moved CSS keyframes to `globals.css` to prevent layout thrashing, and added GPU hardware acceleration with `willChange: 'transform'`.
   - Production build verified with all 11 static pages generated successfully.
 
 ## Next Steps

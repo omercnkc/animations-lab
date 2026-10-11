@@ -18,6 +18,8 @@ import {
   Laptop,
   Speaker,
   Camera,
+  Monitor,
+  Headphones,
 } from 'lucide-react';
 import { useLanguage } from '@/i18n/language-context';
 
@@ -369,10 +371,12 @@ function MiniOrbitingLoader() {
     { id: 'laptop', icon: Laptop },
     { id: 'speaker', icon: Speaker },
     { id: 'camera', icon: Camera },
+    { id: 'pc', icon: Monitor },
+    { id: 'headphones', icon: Headphones },
   ];
 
   const numItems = miniIcons.length;
-  const orbitRadius = 46;
+  const orbitRadius = 64;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -385,34 +389,18 @@ function MiniOrbitingLoader() {
   const numOrbiting = orbitingItems.length;
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-2 select-none" style={{ width: '140px', height: '140px' }}>
-      <style>{`
-        @keyframes miniSpinOrbit {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        @keyframes miniCounterSpin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(-360deg); }
-        }
-      `}</style>
-
-      {/* Orbit Ring Track */}
-      <div
-        className="absolute rounded-full border border-dashed border-[var(--color-border-subtle)] pointer-events-none opacity-60"
-        style={{
-          width: `${orbitRadius * 2}px`,
-          height: `${orbitRadius * 2}px`,
-        }}
-      />
-
+    <div
+      className="relative flex items-center justify-center select-none"
+      style={{ width: '180px', height: '180px' }}
+    >
       {/* Rotating Orbit Container */}
       <div
         className="relative flex items-center justify-center"
         style={{
-          width: `${orbitRadius * 2}px`,
-          height: `${orbitRadius * 2}px`,
-          animation: 'miniSpinOrbit 22s linear infinite',
+          width: '100%',
+          height: '100%',
+          animation: 'orbit-spin 22s linear infinite',
+          willChange: 'transform',
         }}
       >
         {miniIcons.map((item, idx) => {
@@ -440,30 +428,34 @@ function MiniOrbitingLoader() {
               style={{
                 top: '50%',
                 left: '50%',
-                width: '32px',
-                height: '32px',
-                marginTop: '-16px',
-                marginLeft: '-16px',
+                width: '36px',
+                height: '36px',
+                marginTop: '-18px',
+                marginLeft: '-18px',
                 transform: `translate(${x}px, ${y}px)`,
                 transition: 'transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1)',
                 zIndex: isCenter ? 25 : 5,
+                willChange: 'transform',
               }}
             >
               <div
                 className="w-full h-full rounded-full flex items-center justify-center shadow-xs"
                 style={{
-                  animation: 'miniCounterSpin 22s linear infinite',
+                  animation: 'orbit-counter-spin 22s linear infinite',
                   transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   backgroundColor: isCenter ? 'var(--color-primary)' : 'var(--color-bg-page)',
                   color: isCenter ? '#ffffff' : 'var(--color-text-secondary)',
-                  border: isCenter ? '2px solid var(--color-primary)' : '1.5px solid var(--color-border-subtle)',
-                  transform: isCenter ? 'scale(1.3)' : 'scale(1)',
+                  border: isCenter
+                    ? '2px solid var(--color-primary)'
+                    : '1.5px solid var(--color-border-subtle)',
+                  transform: isCenter ? 'scale(1.4)' : 'scale(1)',
                   boxShadow: isCenter
-                    ? '0 0 16px rgba(70, 72, 212, 0.5), 0 4px 10px rgba(0, 0, 0, 0.12)'
-                    : '0 2px 6px rgba(0, 0, 0, 0.05)',
+                    ? '0 0 20px rgba(56, 189, 248, 0.55), 0 6px 14px rgba(0, 0, 0, 0.15)'
+                    : '0 3px 8px rgba(0, 0, 0, 0.06)',
+                  willChange: 'transform',
                 }}
               >
-                <Icon size={isCenter ? 16 : 13} strokeWidth={2.4} />
+                <Icon size={isCenter ? 18 : 14} strokeWidth={2.3} />
               </div>
             </div>
           );
