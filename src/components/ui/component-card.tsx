@@ -20,6 +20,10 @@ import {
   Camera,
   Monitor,
   Headphones,
+  Mail,
+  Sparkles,
+  CheckCircle2,
+  Loader2,
 } from 'lucide-react';
 import { useLanguage } from '@/i18n/language-context';
 
@@ -36,6 +40,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
         {item.id === 'smart-lock-input' && <MiniSmartLock />}
         {item.id === 'bottom-navigation-fluid' && <MiniFluidBottomNav />}
         {item.id === 'orbiting-bubble-loader' && <MiniOrbitingLoader />}
+        {item.id === 'animated-auth-panel' && <MiniAuthPanel />}
 
         {/* Platform tags */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
@@ -460,6 +465,167 @@ function MiniOrbitingLoader() {
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+function MiniAuthPanel() {
+  const [isRegister, setIsRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleAction = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (loading || success) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSuccess(true);
+      setTimeout(() => setSuccess(false), 2200);
+    }, 900);
+  };
+
+  return (
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="relative flex w-[304px] h-[154px] overflow-hidden rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-bg-page)] shadow-xl transition-all duration-300 hover:shadow-2xl select-none"
+    >
+      {/* Sol Panel: Parlayan ve Yüzen Orblar & Marka */}
+      <div className="relative w-[124px] h-full flex flex-col justify-between p-3.5 bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-800 text-white overflow-hidden shrink-0">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-15 pointer-events-none">
+          <svg className="w-full h-full">
+            <defs>
+              <pattern id="mini-auth-grid" width="16" height="16" patternUnits="userSpaceOnUse">
+                <path d="M 16 0 L 0 0 0 16" fill="none" stroke="currentColor" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#mini-auth-grid)" />
+          </svg>
+        </div>
+
+        {/* Canlı Yüzen Glow Orblar */}
+        <div
+          className="absolute -top-8 -left-8 w-28 h-28 rounded-full bg-indigo-300/40 blur-xl pointer-events-none"
+          style={{
+            animation: 'floatOrb1 5s ease-in-out infinite',
+            willChange: 'transform',
+          }}
+        />
+        <div
+          className="absolute -bottom-8 -right-8 w-28 h-28 rounded-full bg-violet-300/35 blur-xl pointer-events-none"
+          style={{
+            animation: 'floatOrb2 7s ease-in-out infinite',
+            willChange: 'transform',
+          }}
+        />
+
+        {/* Dönen Konsantrik Halka */}
+        <div
+          className="absolute -bottom-5 -right-5 opacity-30 pointer-events-none"
+          style={{
+            animation: 'spinRings 20s linear infinite',
+            willChange: 'transform',
+          }}
+        >
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="35" stroke="white" strokeWidth="0.75" strokeDasharray="4 4" />
+            <circle cx="40" cy="40" r="24" stroke="white" strokeWidth="0.75" />
+            <circle cx="40" cy="40" r="14" stroke="white" strokeWidth="0.75" strokeDasharray="3 3" />
+          </svg>
+        </div>
+
+        {/* Brand Header */}
+        <div className="relative z-10 flex items-center gap-1.5">
+          <div className="flex h-5 w-5 items-center justify-center rounded-md bg-white shadow-xs">
+            <Sparkles className="h-3 w-3 text-indigo-600" />
+          </div>
+          <span className="text-xs font-bold tracking-tight text-white">Meet.ai</span>
+        </div>
+
+        {/* Copy */}
+        <div className="relative z-10">
+          <div className="text-[11px] font-extrabold leading-tight">
+            {isRegister ? 'Geleceğe Katıl' : 'Yapay Zeka ile Tanış'}
+          </div>
+          <div className="text-[8.5px] text-indigo-200/90 leading-tight mt-0.5">
+            Akıllı Asistanlar
+          </div>
+        </div>
+      </div>
+
+      {/* Sağ Form Alanı */}
+      <div className="flex-1 h-full p-3 flex flex-col justify-between bg-[var(--color-bg-page)]">
+        {/* Mod Değiştirici (Sliding Pill) */}
+        <div className="relative flex rounded-lg bg-[var(--color-bg-panel)] p-0.5 border border-[var(--color-border-subtle)]">
+          <div
+            className="absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] rounded-md bg-[var(--color-bg-page)] shadow-xs transition-transform duration-300"
+            style={{
+              transform: isRegister ? 'translateX(calc(100% + 2px))' : 'translateX(0)',
+              transitionTimingFunction: 'cubic-bezier(0.34, 1.3, 0.64, 1)',
+            }}
+          />
+          <button
+            type="button"
+            onClick={() => { setIsRegister(false); setSuccess(false); }}
+            className={`relative z-10 flex-1 py-1 text-[9.5px] font-bold text-center transition-colors cursor-pointer ${
+              !isRegister ? 'text-indigo-600 dark:text-indigo-400' : 'text-[var(--color-text-secondary)]'
+            }`}
+          >
+            Giriş
+          </button>
+          <button
+            type="button"
+            onClick={() => { setIsRegister(true); setSuccess(false); }}
+            className={`relative z-10 flex-1 py-1 text-[9.5px] font-bold text-center transition-colors cursor-pointer ${
+              isRegister ? 'text-indigo-600 dark:text-indigo-400' : 'text-[var(--color-text-secondary)]'
+            }`}
+          >
+            Kayıt
+          </button>
+        </div>
+
+        {/* Input alanları */}
+        <div className="space-y-1.5 my-auto overflow-hidden">
+          {isRegister && (
+            <div className="flex items-center gap-1.5 h-6 px-2 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] text-[9px] text-[var(--color-text-secondary)]">
+              <User className="h-2.5 w-2.5 text-slate-400 shrink-0" />
+              <span className="truncate opacity-75">Ahmet Yılmaz</span>
+            </div>
+          )}
+          <div className="flex items-center gap-1.5 h-6 px-2 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] text-[9px] text-[var(--color-text-secondary)]">
+            <Mail className="h-2.5 w-2.5 text-slate-400 shrink-0" />
+            <span className="truncate opacity-75">ornek@meet.ai</span>
+          </div>
+          <div className="flex items-center gap-1.5 h-6 px-2 rounded-md border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] text-[9px] text-[var(--color-text-secondary)]">
+            <Lock className="h-2.5 w-2.5 text-slate-400 shrink-0" />
+            <span className="tracking-widest opacity-75">••••••••</span>
+          </div>
+        </div>
+
+        {/* Submit action button */}
+        <button
+          type="button"
+          onClick={handleAction}
+          className={`flex items-center justify-center gap-1.5 h-6.5 w-full rounded-md text-white text-[9.5px] font-semibold transition-all shadow-xs cursor-pointer ${
+            success ? 'bg-emerald-600 shadow-emerald-600/30' : 'bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-indigo-600/25'
+          }`}
+        >
+          {loading ? (
+            <Loader2 className="h-3 w-3 animate-spin" />
+          ) : success ? (
+            <>
+              <CheckCircle2 className="h-3 w-3 text-emerald-200" />
+              <span>Giriş Yapıldı</span>
+            </>
+          ) : (
+            <>
+              <span>{isRegister ? 'Hesap Aç' : 'Giriş Yap'}</span>
+              <ArrowRight className="h-2.5 w-2.5" />
+            </>
+          )}
+        </button>
       </div>
     </div>
   );

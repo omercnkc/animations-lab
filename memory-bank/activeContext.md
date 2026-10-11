@@ -45,6 +45,11 @@
   - Interactive mini preview with interactive bubble clicking added to `ComponentCard` on home showcase page.
   - Optimized mini card preview: increased orbit radius from 46px to 64px, added all 7 device icons, removed distorted dashed ring, moved CSS keyframes to `globals.css` to prevent layout thrashing, and added GPU hardware acceleration with `willChange: 'transform'`.
   - Production build verified with all 11 static pages generated successfully.
+- Added **Animated Split Auth Card** (`animated-auth-panel` in `cards` category) from `omercnkc/login`:
+  - Web: Split-screen card with Meet.ai brand panel, glowing pulsing floating orbs, concentric decorative rings, SVG grid overlay, and smooth morphing Login/Register form switcher with input stagger.
+  - Mobile: React Native Reanimated equivalent with floating banner orbs and spring-animated tab toggle.
+  - Interactive mini split preview added to `ComponentCard` on home showcase page.
+  - Production build verified with all 13 static pages generated successfully.
 
 ## Next Steps
 - Continue expanding animation items across loaders, transitions, and gesture components.

@@ -15,6 +15,7 @@
   - Smart lock & password validator (`smart-lock-input`)
   - Fluid shooting-line bottom navigation (`bottom-navigation-fluid`)
   - Orbiting bubble device loader (`orbiting-bubble-loader`)
+  - Animated split auth card (`animated-auth-panel`)
 - [x] **Phase 4**: Showcase UI/UX:
   - Real-time search & category filters
   - Dual light/dark mode with obsidian dark palette

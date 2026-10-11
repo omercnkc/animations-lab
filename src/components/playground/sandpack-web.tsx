@@ -78,7 +78,8 @@ export default function App() {
       alignItems: 'center',
       justifyContent: 'center',
       fontFamily: 'system-ui, sans-serif',
-      padding: '24px'
+      padding: '12px',
+      overflow: 'hidden'
     }}>
       <DemoComponent />
     </div>
