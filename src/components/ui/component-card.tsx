@@ -10,6 +10,10 @@ import {
   Globe,
   Lock,
   Unlock,
+  Home,
+  Package,
+  Bell,
+  User,
 } from 'lucide-react';
 import { useLanguage } from '@/i18n/language-context';
 
@@ -24,6 +28,7 @@ export function ComponentCard({ item }: { item: ComponentItem }) {
 
         {/* Dynamic preview based on id */}
         {item.id === 'smart-lock-input' && <MiniSmartLock />}
+        {item.id === 'bottom-navigation-fluid' && <MiniFluidBottomNav />}
 
         {/* Platform tags */}
         <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
@@ -171,4 +176,134 @@ function MiniSmartLock() {
     </div>
   );
 }
+
+function MiniFluidBottomNav() {
+  const [active, setActive] = useState(0);
+  const [line, setLine] = useState<{ id: number; x1: number; x2: number; color: string } | null>(null);
+
+  const miniTabs = [
+    { id: 'h', icon: Home, color: '#4648d4' },
+    { id: 'p', icon: Package, color: '#006c49' },
+    { id: 'b', icon: Bell, color: '#ba1a1a' },
+    { id: 'u', icon: User, color: '#d97706' },
+  ];
+
+  const barWidth = 208;
+  const tabWidth = barWidth / 4;
+
+  const handleTabClick = (e: React.MouseEvent, index: number) => {
+    e.stopPropagation();
+    if (index === active) return;
+    const x1 = active * tabWidth + tabWidth / 2;
+    const x2 = index * tabWidth + tabWidth / 2;
+    const id = Date.now();
+    setLine({ id, x1, x2, color: miniTabs[index].color });
+    setTimeout(() => setLine(null), 600);
+    setActive(index);
+  };
+
+  return (
+    <div className="relative flex flex-col items-center justify-center p-2 select-none" style={{ width: barWidth, height: '76px' }}>
+      {/* Background Pill */}
+      <div
+        className="absolute bottom-1 w-full h-11 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-bg-panel)] shadow-md"
+      />
+
+      {/* Shooting Line SVG Overlay */}
+      {line && (
+        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ zIndex: 15 }}>
+          <MiniShootingLine x1={line.x1} x2={line.x2} color={line.color} />
+        </svg>
+      )}
+
+      {/* Tab Buttons */}
+      <div className="absolute bottom-1 w-full h-11 flex items-center" style={{ zIndex: 20 }}>
+        {miniTabs.map((tab, idx) => {
+          const Icon = tab.icon;
+          const isActive = active === idx;
+          return (
+            <button
+              key={tab.id}
+              onClick={(e) => handleTabClick(e, idx)}
+              className="flex-1 h-full flex flex-col items-center justify-center relative cursor-pointer outline-none bg-transparent border-none p-0"
+            >
+              {/* Active Bead */}
+              <div
+                className="absolute transition-all duration-300 pointer-events-none"
+                style={{
+                  width: '26px',
+                  height: '26px',
+                  borderRadius: '13px',
+                  backgroundColor: tab.color,
+                  top: '-7px',
+                  transform: isActive ? 'scale(1)' : 'scale(0)',
+                  opacity: isActive ? 1 : 0,
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.18)',
+                  transition: 'transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1) 0.15s, opacity 0.2s',
+                }}
+              />
+
+              <div
+                className="relative flex items-center justify-center transition-all duration-300"
+                style={{
+                  transform: isActive ? 'translateY(-14px)' : 'translateY(0)',
+                  transition: 'transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1)',
+                  zIndex: 25,
+                }}
+              >
+                <Icon
+                  size={15}
+                  color={isActive ? '#ffffff' : '#64748b'}
+                  strokeWidth={2.5}
+                />
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function MiniShootingLine({ x1, x2, color }: { x1: number; x2: number; color: string }) {
+  const isRight = x2 > x1;
+  const lineLength = Math.abs(x2 - x1);
+  const circ = 81.68; // 2 * PI * 13
+  const [offset, setOffset] = useState(circ);
+  const [opacity, setOpacity] = useState(1);
+
+  const pathData = isRight
+    ? `M ${x1} 36.5 L ${x2} 36.5 A 13 13 0 1 0 ${x2 - 0.01} 36.5`
+    : `M ${x1} 36.5 L ${x2} 36.5 A 13 13 0 1 1 ${x2 + 0.01} 36.5`;
+
+  React.useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setOffset(-lineLength);
+      });
+    });
+    const timer = setTimeout(() => setOpacity(0), 350);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(timer);
+    };
+  }, [lineLength]);
+
+  return (
+    <path
+      d={pathData}
+      fill="none"
+      stroke={color}
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      style={{
+        strokeDasharray: `${circ} 9999`,
+        strokeDashoffset: offset,
+        opacity,
+        transition: 'stroke-dashoffset 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s 0.35s linear',
+      }}
+    />
+  );
+}
+
 

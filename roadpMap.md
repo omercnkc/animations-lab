@@ -81,8 +81,8 @@ graph TD
   - Özgün interaktif buton paketleri hazırlanacak.
 - [ ] **Kartlar & 3D (Cards):**
   - Özgün 3D ve perspektif kart bileşenleri eklenecek.
-- [ ] **Sayfa & Modal Geçişleri (Transitions):**
-  - Özgün modal ve sayfa geçişleri eklenecek.
+- [x] **Sayfa & Navigasyon Geçişleri (Transitions):**
+  - Fluid Shooting-Line Bottom Navigation (SVG dash-offset yolculuğu ve yaylı ikon yükselmesi).
 
 ---
 

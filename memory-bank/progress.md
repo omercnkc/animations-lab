@@ -13,7 +13,7 @@
 - [x] **Phase 2**: "Try it Yourself" Engine (Sandpack Web + Expo Snack Mobile)
 - [x] **Phase 3**: Animation Catalog Expansion:
   - Smart lock & password validator (`smart-lock-input`)
-  - *(Tüm mock bileşenler `magnetic-button`, `shimmer-button`, `theme-toggle`, `tilt-card`, `bottom-sheet` tamamen kaldırıldı)*
+  - Fluid shooting-line bottom navigation (`bottom-navigation-fluid`)
 - [x] **Phase 4**: Showcase UI/UX:
   - Real-time search & category filters
   - Dual light/dark mode with obsidian dark palette

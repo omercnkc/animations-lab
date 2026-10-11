@@ -32,7 +32,12 @@
   - Zero compromises on security, trust boundaries validation, error handling, accessibility, and user-requested scope.
   - Guide for all upcoming code generation and reviews.
 - Completely removed all mock items (`magnetic-button`, `shimmer-button`, `theme-toggle`, `tilt-card`, `bottom-sheet`) and their files. Kept only the real production component `smart-lock-input` in the active registry. Cleaned up preview components, navbar, and hero CTA routes.
-- Refactored padlock animation to clean mathematical vector SVG across both `smart-lock-input` playground and `MiniSmartLock` preview. Replaced div/border cutout hacks with smooth U-path shackle, realistic pivot rotation, and seamless leg anchoring inside the lock body. Production build verified with 100% success.
+- Refactored padlock animation to clean mathematical vector SVG across both `smart-lock-input` playground and `MiniSmartLock` preview. Replaced div/border cutout hacks with smooth U-path shackle, realistic pivot rotation, and seamless leg anchoring inside the lock body.
+- Added **Fluid Shooting-Line Bottom Navigation** (`bottom-navigation-fluid` in `transitions` category) from `omercnkc/bottom-navigations-app`:
+  - Web: Interactive shooting SVG line overlay with dynamic `strokeDasharray`/`strokeDashoffset` travel, expanding solid bead, and spring icon lift on tab switch.
+  - Mobile: React Native Reanimated equivalent with spring indicator dot and active icon lift.
+  - Interactive mini preview with shooting line added to `ComponentCard` on home showcase page.
+  - Production build and static pages verified with 100% success.
 
 ## Next Steps
 - Continue expanding animation items across loaders, transitions, and gesture components.

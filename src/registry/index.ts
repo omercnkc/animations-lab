@@ -1,10 +1,12 @@
 import { ComponentItem, CATEGORIES, ComponentCategory } from "./schema";
 import { smartLockInput } from "./items/inputs/smart-lock-input";
+import { bottomNavigationFluid } from "./items/transitions/bottom-navigation-fluid";
 
 export * from "./schema";
 
 export const allComponents: ComponentItem[] = [
   smartLockInput,
+  bottomNavigationFluid,
 ];
 
 export function getAllComponents(): ComponentItem[] {
