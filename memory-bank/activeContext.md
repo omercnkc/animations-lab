@@ -27,8 +27,14 @@
   - Created `src/i18n/translations.ts` and `src/i18n/language-context.tsx` with `LanguageProvider` & `useLanguage()`.
   - Created animated `LanguageToggle` button in Navbar (`TR` / `EN` with smooth sliding spring pill).
   - Localized Navbar, Hero, Catalog section, search placeholders, category chips, component cards, detail page breadcrumbs, and footer.
-  - Persistent language preference via `localStorage('animations-lab-locale')` with browser locale detection.
+  - Adopted & integrated **Ponytail (Lazy Senior Dev Mode)** rules into [AGENTS.md](file:///d:/animations-lab/AGENTS.md):
+  - Focuses on YAGNI, minimalism, smallest complete change, and avoiding over-engineering.
+  - Zero compromises on security, trust boundaries validation, error handling, accessibility, and user-requested scope.
+  - Guide for all upcoming code generation and reviews.
+- Completely removed all mock items (`magnetic-button`, `shimmer-button`, `theme-toggle`, `tilt-card`, `bottom-sheet`) and their files. Kept only the real production component `smart-lock-input` in the active registry. Cleaned up preview components, navbar, and hero CTA routes.
+- Refactored padlock animation to clean mathematical vector SVG across both `smart-lock-input` playground and `MiniSmartLock` preview. Replaced div/border cutout hacks with smooth U-path shackle, realistic pivot rotation, and seamless leg anchoring inside the lock body. Production build verified with 100% success.
 
 ## Next Steps
 - Continue expanding animation items across loaders, transitions, and gesture components.
 - Prepare deployment configs for Vercel / Cloudflare.
+

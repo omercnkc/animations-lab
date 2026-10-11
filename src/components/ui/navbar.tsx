@@ -47,7 +47,7 @@ export function Navbar() {
             {t('nav.catalog')}
           </Link>
           <Link
-            href="/components/buttons/magnetic-button"
+            href="/components/inputs/smart-lock-input"
             className="flex items-center gap-1.5 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-primary)]"
           >
             <Terminal className="h-4 w-4 text-[var(--color-text-muted)]" />

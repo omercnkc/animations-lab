@@ -15,6 +15,9 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const components = getAllComponents();
+  if (components.length === 0) {
+    return [{ category: 'all', slug: 'empty' }];
+  }
   return components.map((c) => ({
     category: c.category,
     slug: c.slug,

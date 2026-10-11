@@ -12,12 +12,8 @@
 - [x] **Phase 1**: Core Architecture & Infrastructure (Next.js, Tailwind, Design System, Registry Schema)
 - [x] **Phase 2**: "Try it Yourself" Engine (Sandpack Web + Expo Snack Mobile)
 - [x] **Phase 3**: Animation Catalog Expansion:
-  - Theme toggles (`theme-toggle`)
-  - Magnetic buttons (`magnetic-button`)
-  - Shimmer buttons (`shimmer-button`)
-  - 3D Tilt cards (`tilt-card`)
-  - Bottom sheet transitions (`bottom-sheet`)
   - Smart lock & password validator (`smart-lock-input`)
+  - *(Tüm mock bileşenler `magnetic-button`, `shimmer-button`, `theme-toggle`, `tilt-card`, `bottom-sheet` tamamen kaldırıldı)*
 - [x] **Phase 4**: Showcase UI/UX:
   - Real-time search & category filters
   - Dual light/dark mode with obsidian dark palette

@@ -53,7 +53,7 @@ export function HeroSection() {
           </a>
 
           <Link
-            href="/components/buttons/magnetic-button"
+            href="/components/inputs/smart-lock-input"
             className="flex items-center gap-2 rounded-xl border border-[var(--color-border-medium)] bg-[var(--color-bg-panel)] px-6 py-3.5 text-sm font-semibold text-[var(--color-text-main)] shadow-xs transition-all hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
           >
             <Terminal className="h-4 w-4 text-[var(--color-primary)]" />

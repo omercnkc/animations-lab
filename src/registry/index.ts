@@ -1,21 +1,10 @@
 import { ComponentItem, CATEGORIES, ComponentCategory } from "./schema";
-import { magneticButton } from "./items/buttons/magnetic-button";
-import { shimmerButton } from "./items/buttons/shimmer-button";
-import { themeToggle } from "./items/toggles/theme-toggle";
-import { tiltCard } from "./items/cards/tilt-card";
-import { bottomSheet } from "./items/transitions/bottom-sheet";
-
 import { smartLockInput } from "./items/inputs/smart-lock-input";
 
 export * from "./schema";
 
 export const allComponents: ComponentItem[] = [
   smartLockInput,
-  magneticButton,
-  shimmerButton,
-  themeToggle,
-  tiltCard,
-  bottomSheet,
 ];
 
 export function getAllComponents(): ComponentItem[] {

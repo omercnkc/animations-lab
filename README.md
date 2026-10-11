@@ -39,11 +39,7 @@ Experience, live-tweak, and copy-paste buttery-smooth micro-interactions.
 
 | Component | Category | Web Engine | Mobile Engine | Preview |
 | :--- | :--- | :--- | :--- | :--- |
-| **Magnetic Button** | Buttons | Framer Motion | Reanimated v3 + Gestures | Cursor / Touch Attraction |
-| **Neon Shimmer Button** | Buttons | Conic Gradient CSS | Reanimated Pulse | Rotating Neon Border Glow |
-| **Morphing Theme Switch** | Toggles | Framer Motion SVG | Reanimated Spring | Sun / Moon Layout Morph |
-| **3D Perspective Tilt Card** | Cards | 3D Transform Motion | Reanimated Pan 3D | Dynamic 3D Angles & Glare |
-| **Spring Bottom Sheet** | Transitions | Drag to Dismiss | Reanimated Bottom Sheet | Fluid Drawer Physics |
+| **Smart Lock & Password Validator** | Inputs | Framer Motion + Pivot Physics | Reanimated v3 Springs | Animated Padlock & Security Rules |
 
 ---
 

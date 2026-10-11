@@ -15,7 +15,7 @@ Bu doküman, hem **Web** hem **Mobil (React Native)** animasyonlarını barınd�
 
 | Teknoloji | Kategori | Neden ve Ne İçin Kullanıyoruz? |
 | :--- | :--- | :--- |
-| **Next.js (App Router)** | Web Framework | Hızlı sayfa geçişleri, SEO uyumu, her bileşene özel URL oluşturma (`/components/buttons/magnetic-button`) ve statik render gücü için. |
+| **Next.js (App Router)** | Web Framework | Hızlı sayfa geçişleri, SEO uyumu, her bileşene özel URL oluşturma (`/components/inputs/smart-lock-input`) ve statik render gücü için. |
 | **Tailwind CSS + Vanilla CSS** | Stil & Arayüz | Vitrin arayüzünün modern, minimalist ve karanlık/aydınlık mod destekli olması için. Özel animasyon keyframe'leri için saf CSS. |
 | **@codesandbox/sandpack-react** | Web Playground Motoru | **W3Schools mantığını Web için sağlayan çekirdek araç.** Tarayıcı içinde mini bir derleyici çalıştırır; sol panele kodu, sağ panele canlı çıktıyı koyar. Sıfır sunucu maliyeti! |
 | **Expo Snack Embed** | Mobil Playground Motoru | **React Native kodlarını tarayıcıda canlı çalıştırmanın standart yolu.** Ziyaretçiye tarayıcı içinde interaktif bir iPhone/Android simülatörü sunar. |
@@ -73,15 +73,16 @@ graph TD
 ---
 
 ### 📍 Faz 3: İlk Animasyon Katalogları (İçerik Üretimi)
-- [x] **Tema Geçişleri (Theme Toggles):**
-  - Smooth Morphing Sun/Moon Toggle (SVG morphing geçişi).
-- [x] **Butonlar (Interactive Buttons):**
-  - Magnetic Button (İmleci/parmağı çeken manyetik buton).
-  - Shimmer / Border Glow Button (Modern neon ışıma efekti).
-- [x] **Kartlar & 3D (Cards):**
-  - 3D Perspective Tilt Card (Açısal eğim ve hologram yansıması).
-- [x] **Sayfa & Modal Geçişleri (Transitions):**
-  - Bottom Sheet Slide-Up (Mobilde ve webde pürüzsüz açılan alt panel).
+- [x] **Dinamik Girdi & Formlar (Inputs):**
+  - Smart Lock & Password Validator (Framer Motion + Reanimated v3).
+- [ ] **Tema Geçişleri (Theme Toggles):**
+  - Özgün geçiş bileşenleri eklenecek.
+- [ ] **Butonlar (Interactive Buttons):**
+  - Özgün interaktif buton paketleri hazırlanacak.
+- [ ] **Kartlar & 3D (Cards):**
+  - Özgün 3D ve perspektif kart bileşenleri eklenecek.
+- [ ] **Sayfa & Modal Geçişleri (Transitions):**
+  - Özgün modal ve sayfa geçişleri eklenecek.
 
 ---
 
