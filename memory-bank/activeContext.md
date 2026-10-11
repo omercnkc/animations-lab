@@ -37,6 +37,7 @@
   - Web: Interactive shooting SVG line overlay with dynamic `strokeDasharray`/`strokeDashoffset` travel, expanding solid bead, and spring icon lift on tab switch.
   - Mobile: React Native Reanimated equivalent with spring indicator dot and active icon lift.
   - Interactive mini preview with shooting line added to `ComponentCard` on home showcase page.
+  - Fixed animation stutter/freeze optimization issues: replaced `requestAnimationFrame` state thrashing with native Web Animations API, eliminated stale dependency traps, added multi-line key tracking, and synchronized bead burst delay (240ms) with stroke transit.
   - Production build and static pages verified with 100% success.
 
 ## Next Steps
